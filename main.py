@@ -120,7 +120,7 @@ def sample_parameters(params):
 
 def main(_):
     # Save default params and set scope
-    saved_params = FLAGS.__flags
+    saved_params = FLAGS.__flags # !!!Not pass the parameters on the Colab
     if saved_params['ensemble']: # uni + bi + tri
         model_name = 'ensemble'
     elif saved_params['ngram'] == 1:
