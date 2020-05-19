@@ -25,7 +25,7 @@ flags.DEFINE_integer("min_grad", -5, "Minimum gradient to clip")
 flags.DEFINE_integer("max_grad", 5, "Maximum gradient to clip")
 flags.DEFINE_integer("batch_size", 300, "Size of batch")
 
-flags.DEFINE_integer("ngram", 3, "Ngram feature when ensemble = False.")
+flags.DEFINE_integer("ngram", 1, "Ngram feature when ensemble = False.") # *** Origin value is 3
 
 flags.DEFINE_float("decay_rate", 0.99, "Decay rate of learning rate")
 flags.DEFINE_float("decay_step", 100, "Decay step of learning rate")
@@ -71,7 +71,9 @@ flags.DEFINE_float("learning_rate_max", 5e-2, "Maximum learning rate of the opti
 
 # Model settings
 flags.DEFINE_boolean("default_params", True, "True to use default params")
-flags.DEFINE_boolean("ensemble", True, "True to use ensemble ngram")
+
+flags.DEFINE_boolean("ensemble", False, "True to use ensemble ngram") # *** Origin value is True
+
 flags.DEFINE_boolean("embed", True, "True to use embedding table")
 flags.DEFINE_boolean("embed_trainable", False, "True to use embedding table")
 flags.DEFINE_boolean("ethnicity", False, "True to test on ethnicity")
@@ -138,7 +140,7 @@ def sample_parameters(params):
 
 def main(_):
     # Save default params and set scope
-    saved_params = FLAGS.__flags # !!!Not pass the parameters on the Colab
+    saved_params = FLAGS.__flags # !!!Not pass the parameters on the Colab when pasting the codes
     if saved_params['ensemble']: # uni + bi + tri
         model_name = 'ensemble'
     elif saved_params['ngram'] == 1:
@@ -160,28 +162,28 @@ def main(_):
     validation_writer.write("[dim_hidden, dim_rnn_cell, learning_rate, lstm_dropout, lstm_layer, hidden_dropout, dim_embed]\n")
     validation_writer.write("combination\ttop1\ttop5\tepoch\n")
 
-    # Run the model
-    for _ in range(saved_params['valid_iteration']):
-        # Sample parameter sets
-        params, combination = sample_parameters(saved_params.copy()) # If not default parameters, then update with initialization
-        dataset = saved_dataset[:]
+#     # Run the model
+#     for _ in range(saved_params['valid_iteration']):
+#         # Sample parameter sets
+#         params, combination = sample_parameters(saved_params.copy()) # If not default parameters, then update with initialization
+#         dataset = saved_dataset[:]
         
-        # Initialize embeddings
-        uni_init = get_char2vec(dataset[0][0][:], params['dim_embed_unigram'], dataset[3][0]) # Return initializer
-        bi_init = get_char2vec(dataset[0][1][:], params['dim_embed_bigram'], dataset[3][4]) # The first [] is the outermost dimension == train_set or dictionary; [3][i] gives the outermost dimension in dictionary
-        tri_init = get_char2vec(dataset[0][2][:], params['dim_embed_trigram'], dataset[3][5]) # Easy to understand with get_data()
+#         # Initialize embeddings
+#         uni_init = get_char2vec(dataset[0][0][:], params['dim_embed_unigram'], dataset[3][0]) # Return initializer
+#         bi_init = get_char2vec(dataset[0][1][:], params['dim_embed_bigram'], dataset[3][4]) # The first [] is the outermost dimension == train_set or dictionary; [3][i] gives the outermost dimension in dictionary
+#         tri_init = get_char2vec(dataset[0][2][:], params['dim_embed_trigram'], dataset[3][5]) # Easy to understand with get_data()
         
-        print(model_name, 'Parameter sets: ', end='')
-        pprint.PrettyPrinter().pprint(combination)
+#         print(model_name, 'Parameter sets: ', end='')
+#         pprint.PrettyPrinter().pprint(combination)
         
-        rnn_model = RNN(params, [uni_init, bi_init, tri_init])
-        top1, top5, ep = experiment(rnn_model, dataset, params)
+#         rnn_model = RNN(params, [uni_init, bi_init, tri_init])
+#         top1, top5, ep = experiment(rnn_model, dataset, params)
         
-        validation_writer.write(str(combination) + '\t')
-        validation_writer.write(str(top1) + '\t' + str(top5) + '\tEp:' + str(ep) + '\n')
+#         validation_writer.write(str(combination) + '\t')
+#         validation_writer.write(str(top1) + '\t' + str(top5) + '\tEp:' + str(ep) + '\n')
 
-    validation_writer.close()
+#     validation_writer.close()
 
-if __name__ == '__main__':
-    tf.app.run()
+# if __name__ == '__main__':
+#     tf.app.run()
 
