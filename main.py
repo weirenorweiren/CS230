@@ -20,12 +20,12 @@ flags.DEFINE_integer("dim_trigram", 14767, "Dimension of input, 8573 or 14767")
 
 flags.DEFINE_integer("dim_output", 127, "Dimension of output, 95 or 127") # *** Number of nationalities
 
-flags.DEFINE_integer("max_time_step", 60, "Maximum time step of RNN")
+flags.DEFINE_integer("max_time_step", 50, "Maximum time step of RNN") # Origin value is 60, now change to optimal
 flags.DEFINE_integer("min_grad", -5, "Minimum gradient to clip")
 flags.DEFINE_integer("max_grad", 5, "Maximum gradient to clip")
-flags.DEFINE_integer("batch_size", 300, "Size of batch")
+flags.DEFINE_integer("batch_size", 1000, "Size of batch") # Origin value is 300, now change to optimal
 
-flags.DEFINE_integer("ngram", 1, "Ngram feature when ensemble = False.") # *** Origin value is 3
+flags.DEFINE_integer("ngram", 3, "Ngram feature when ensemble = False.") # *** 
 
 flags.DEFINE_float("decay_rate", 0.99, "Decay rate of learning rate")
 flags.DEFINE_float("decay_step", 100, "Decay step of learning rate")
@@ -65,14 +65,14 @@ flags.DEFINE_float("hidden_dropout", 0.5, "Dropout rate of hidden layer")
 flags.DEFINE_float("hidden_dropout_min", 0.3, "Minimum dropout rate of hidden layer")
 flags.DEFINE_float("hidden_dropout_max", 0.8, "Maximum dropout rate of hidden layer")
 
-flags.DEFINE_float("learning_rate", 0.01, "Learning rate of the optimzier") # **
+flags.DEFINE_float("learning_rate", 0.0035, "Learning rate of the optimzier") # ** Origin value is 0.01, now change to optimal
 flags.DEFINE_float("learning_rate_min", 5e-3, "Minimum learning rate of the optimzier")
 flags.DEFINE_float("learning_rate_max", 5e-2, "Maximum learning rate of the optimzier")
 
 # Model settings
 flags.DEFINE_boolean("default_params", True, "True to use default params")
 
-flags.DEFINE_boolean("ensemble", False, "True to use ensemble ngram") # *** Origin value is True
+flags.DEFINE_boolean("ensemble", True, "True to use ensemble ngram") # *** 
 
 flags.DEFINE_boolean("embed", True, "True to use embedding table")
 flags.DEFINE_boolean("embed_trainable", False, "True to use embedding table")
