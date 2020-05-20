@@ -1,0 +1,285 @@
+{\rtf1\ansi\ansicpg936\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red25\green25\blue25;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c12941\c12941\c12941;\cssrgb\c100000\c100000\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 ensemble_embedding Parameter sets: [200, 200, 0.0035, 0.5, 1, 0.5, 30, 100, 130]\
+## Building an RNN model\
+Tensor("Unigram/Unigram/embedding_lookup:0", shape=(?, 50, 30), dtype=float32)\
+Tensor("Bigram/Bigram/embedding_lookup:0", shape=(?, 50, 100), dtype=float32)\
+Tensor("Trigram/Trigram/embedding_lookup:0", shape=(?, 50, 130), dtype=float32)\
+/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/gradients_impl.py:91: UserWarning: Converting sparse IndexedSlices to a dense Tensor of unknown shape. This may consume a large amount of memory.\
+  "Converting sparse IndexedSlices to a dense Tensor of unknown shape. "\
+model variables ['Unigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Unigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Bigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Bigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Trigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Trigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Hidden1/Weights:0', 'Hidden1/Biases:0', 'Output/Weights:0', 'Output/Biases:0']\
+## Training\
+Percent: [####################] 100.00% Finished. tr loss: 15.198, acc1: 0.142, acc5: 0.299\
+Training loss: 6.324, acc1: 0.216, acc5: 0.407, ep: 0\
+\
+Validation loss: 2.644, acc1: 0.364, acc5: 0.671, ep: 0\
+Testing loss: 9.737, acc1: 0.001, acc5: 0.160\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.435, acc1: 0.610, acc5: 0.831\
+Training loss: 2.676, acc1: 0.368, acc5: 0.654, ep: 1\
+\
+Validation loss: 2.459, acc1: 0.399, acc5: 0.692, ep: 1\
+Testing loss: 17.343, acc1: 0.000, acc5: 0.377\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.295, acc1: 0.673, acc5: 0.843\
+Training loss: 2.418, acc1: 0.414, acc5: 0.699, ep: 2\
+\
+Validation loss: 2.337, acc1: 0.414, acc5: 0.733, ep: 2\
+Testing loss: 18.235, acc1: 0.000, acc5: 0.164\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.244, acc1: 0.681, acc5: 0.870\
+Training loss: 2.259, acc1: 0.436, acc5: 0.737, ep: 3\
+\
+Validation loss: 2.250, acc1: 0.442, acc5: 0.744, ep: 3\
+Testing loss: 18.527, acc1: 0.000, acc5: 0.180\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.218, acc1: 0.685, acc5: 0.858\
+Training loss: 2.132, acc1: 0.460, acc5: 0.759, ep: 4\
+\
+Validation loss: 2.202, acc1: 0.441, acc5: 0.750, ep: 4\
+Testing loss: 17.781, acc1: 0.000, acc5: 0.132\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.153, acc1: 0.701, acc5: 0.882\
+Training loss: 2.064, acc1: 0.468, acc5: 0.766, ep: 5\
+\
+Validation loss: 2.146, acc1: 0.457, acc5: 0.768, ep: 5\
+Testing loss: 20.359, acc1: 0.000, acc5: 0.022\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.111, acc1: 0.709, acc5: 0.890\
+Training loss: 1.963, acc1: 0.484, acc5: 0.780, ep: 6\
+\
+Validation loss: 2.095, acc1: 0.473, acc5: 0.780, ep: 6\
+Testing loss: 19.363, acc1: 0.000, acc5: 0.069\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.023, acc1: 0.689, acc5: 0.913\
+Training loss: 1.842, acc1: 0.508, acc5: 0.800, ep: 7\
+\
+Validation loss: 2.080, acc1: 0.475, acc5: 0.773, ep: 7\
+Testing loss: 19.536, acc1: 0.000, acc5: 0.044\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.960, acc1: 0.689, acc5: 0.925\
+Training loss: 1.797, acc1: 0.514, acc5: 0.815, ep: 8\
+\
+Validation loss: 2.073, acc1: 0.475, acc5: 0.776, ep: 8\
+Testing loss: 19.313, acc1: 0.000, acc5: 0.026\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.911, acc1: 0.728, acc5: 0.929\
+Training loss: 1.707, acc1: 0.536, acc5: 0.835, ep: 9\
+\
+Validation loss: 2.065, acc1: 0.487, acc5: 0.782, ep: 9\
+Testing loss: 20.575, acc1: 0.000, acc5: 0.040\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.865, acc1: 0.744, acc5: 0.921\
+Training loss: 1.616, acc1: 0.552, acc5: 0.850, ep: 10\
+\
+Validation loss: 2.099, acc1: 0.476, acc5: 0.782, ep: 10\
+Testing loss: 19.597, acc1: 0.000, acc5: 0.033\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.852, acc1: 0.740, acc5: 0.933\
+Training loss: 1.579, acc1: 0.575, acc5: 0.850, ep: 11\
+\
+Validation loss: 2.101, acc1: 0.463, acc5: 0.781, ep: 11\
+Testing loss: 20.367, acc1: 0.000, acc5: 0.036\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.790, acc1: 0.744, acc5: 0.949\
+Training loss: 1.484, acc1: 0.584, acc5: 0.864, ep: 12\
+\
+Validation loss: 2.065, acc1: 0.484, acc5: 0.790, ep: 12\
+Testing loss: 21.012, acc1: 0.000, acc5: 0.008\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.782, acc1: 0.752, acc5: 0.953\
+Training loss: 1.415, acc1: 0.596, acc5: 0.882, ep: 13\
+\
+Validation loss: 2.051, acc1: 0.494, acc5: 0.795, ep: 13\
+Testing loss: 23.088, acc1: 0.000, acc5: 0.008\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.715, acc1: 0.776, acc5: 0.957\
+Training loss: 1.323, acc1: 0.629, acc5: 0.888, ep: 14\
+\
+Validation loss: 2.089, acc1: 0.476, acc5: 0.784, ep: 14\
+Testing loss: 22.356, acc1: 0.000, acc5: 0.012\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.728, acc1: 0.815, acc5: 0.941\
+Training loss: 1.239, acc1: 0.637, acc5: 0.905, ep: 15\
+\
+Validation loss: 2.129, acc1: 0.483, acc5: 0.785, ep: 15\
+Testing loss: 21.399, acc1: 0.000, acc5: 0.034\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.580, acc1: 0.823, acc5: 0.969\
+Training loss: 1.201, acc1: 0.646, acc5: 0.904, ep: 16\
+\
+Validation loss: 2.172, acc1: 0.479, acc5: 0.797, ep: 16\
+Testing loss: 21.957, acc1: 0.000, acc5: 0.031\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.565, acc1: 0.823, acc5: 0.969\
+Training loss: 1.157, acc1: 0.661, acc5: 0.914, ep: 17\
+\
+Validation loss: 2.196, acc1: 0.490, acc5: 0.792, ep: 17\
+Testing loss: 25.163, acc1: 0.000, acc5: 0.014\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.609, acc1: 0.815, acc5: 0.957\
+Training loss: 1.082, acc1: 0.683, acc5: 0.925, ep: 18\
+\
+Validation loss: 2.233, acc1: 0.473, acc5: 0.793, ep: 18\
+Testing loss: 25.690, acc1: 0.000, acc5: 0.004\
+\
+Early stopping applied\
+\
+Testing loss: 25.690, acc1: 0.000, acc5: 0.004\
+ensemble_embedding Parameter sets: [200, 200, 0.0035, 0.5, 1, 0.5, 30, 100, 130]\
+## Building an RNN model\
+Tensor("Unigram/Unigram/embedding_lookup:0", shape=(?, 50, 30), dtype=float32)\
+Tensor("Bigram/Bigram/embedding_lookup:0", shape=(?, 50, 100), dtype=float32)\
+Tensor("Trigram/Trigram/embedding_lookup:0", shape=(?, 50, 130), dtype=float32)\
+model variables ['Unigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Unigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Bigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Bigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Trigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Trigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Hidden1/Weights:0', 'Hidden1/Biases:0', 'Output/Weights:0', 'Output/Biases:0']\
+## Training\
+Percent: [####################] 100.00% Finished. tr loss: 9.801, acc1: 0.122, acc5: 0.319\
+Training loss: 6.096, acc1: 0.198, acc5: 0.395, ep: 0\
+\
+Validation loss: 2.711, acc1: 0.348, acc5: 0.644, ep: 0\
+Testing loss: 11.744, acc1: 0.000, acc5: 0.000\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.679, acc1: 0.594, acc5: 0.799\
+Training loss: 2.793, acc1: 0.358, acc5: 0.638, ep: 1\
+\
+Validation loss: 2.506, acc1: 0.397, acc5: 0.683, ep: 1\
+Testing loss: 19.623, acc1: 0.000, acc5: 0.000\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.445, acc1: 0.654, acc5: 0.839\
+Training loss: 2.446, acc1: 0.403, acc5: 0.708, ep: 2\
+\
+Validation loss: 2.400, acc1: 0.415, acc5: 0.707, ep: 2\
+Testing loss: 19.319, acc1: 0.000, acc5: 0.000\
+\
+Percent: [#################   ] 86.48%  tr loss: 2.502, acc1: 0.393, acc5: 0.687\
+Training loss: 2.282, acc1: 0.439, acc5: 0.727, ep: 3\
+\
+Validation loss: 2.328, acc1: 0.421, acc5: 0.724, ep: 3\
+Testing loss: 19.556, acc1: 0.000, acc5: 0.000\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.294, acc1: 0.677, acc5: 0.882\
+Training loss: 2.177, acc1: 0.454, acc5: 0.749, ep: 4\
+\
+Validation loss: 2.250, acc1: 0.432, acc5: 0.743, ep: 4\
+Testing loss: 19.205, acc1: 0.000, acc5: 0.000\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.227, acc1: 0.705, acc5: 0.870\
+Training loss: 2.072, acc1: 0.474, acc5: 0.765, ep: 5\
+\
+Validation loss: 2.234, acc1: 0.440, acc5: 0.746, ep: 5\
+Testing loss: 19.484, acc1: 0.000, acc5: 0.000\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.209, acc1: 0.681, acc5: 0.886\
+Training loss: 1.993, acc1: 0.480, acc5: 0.792, ep: 6\
+\
+Validation loss: 2.195, acc1: 0.456, acc5: 0.755, ep: 6\
+Testing loss: 20.765, acc1: 0.000, acc5: 0.000\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.107, acc1: 0.713, acc5: 0.909\
+Training loss: 1.914, acc1: 0.505, acc5: 0.793, ep: 7\
+\
+Validation loss: 2.211, acc1: 0.449, acc5: 0.755, ep: 7\
+Testing loss: 20.942, acc1: 0.000, acc5: 0.000\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.077, acc1: 0.701, acc5: 0.902\
+Training loss: 1.803, acc1: 0.517, acc5: 0.806, ep: 8\
+\
+Validation loss: 2.177, acc1: 0.456, acc5: 0.766, ep: 8\
+Testing loss: 22.073, acc1: 0.000, acc5: 0.000\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.073, acc1: 0.701, acc5: 0.902\
+Training loss: 1.698, acc1: 0.546, acc5: 0.827, ep: 9\
+\
+Validation loss: 2.165, acc1: 0.464, acc5: 0.775, ep: 9\
+Testing loss: 21.459, acc1: 0.000, acc5: 0.000\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.953, acc1: 0.724, acc5: 0.937\
+Training loss: 1.590, acc1: 0.562, acc5: 0.857, ep: 10\
+\
+Validation loss: 2.203, acc1: 0.468, acc5: 0.771, ep: 10\
+Testing loss: 23.049, acc1: 0.000, acc5: 0.000\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.907, acc1: 0.724, acc5: 0.921\
+Training loss: 1.533, acc1: 0.573, acc5: 0.867, ep: 11\
+\
+Validation loss: 2.206, acc1: 0.462, acc5: 0.773, ep: 11\
+Testing loss: 21.716, acc1: 0.000, acc5: 0.001\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.898, acc1: 0.736, acc5: 0.941\
+Training loss: 1.431, acc1: 0.590, acc5: 0.884, ep: 12\
+\
+Validation loss: 2.217, acc1: 0.471, acc5: 0.782, ep: 12\
+Testing loss: 22.354, acc1: 0.000, acc5: 0.001\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.764, acc1: 0.764, acc5: 0.961\
+Training loss: 1.376, acc1: 0.602, acc5: 0.898, ep: 13\
+\
+Validation loss: 2.265, acc1: 0.460, acc5: 0.770, ep: 13\
+Testing loss: 22.506, acc1: 0.000, acc5: 0.002\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.740, acc1: 0.776, acc5: 0.957\
+Training loss: 1.319, acc1: 0.621, acc5: 0.893, ep: 14\
+\
+Validation loss: 2.281, acc1: 0.459, acc5: 0.786, ep: 14\
+Testing loss: 23.473, acc1: 0.000, acc5: 0.001\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.691, acc1: 0.783, acc5: 0.953\
+Training loss: 1.256, acc1: 0.648, acc5: 0.905, ep: 15\
+\
+Validation loss: 2.278, acc1: 0.478, acc5: 0.783, ep: 15\
+Testing loss: 24.323, acc1: 0.000, acc5: 0.001\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.621, acc1: 0.811, acc5: 0.969\
+Training loss: 1.190, acc1: 0.653, acc5: 0.913, ep: 16\
+\
+Validation loss: 2.342, acc1: 0.466, acc5: 0.785, ep: 16\
+Testing loss: 24.360, acc1: 0.000, acc5: 0.001\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.528, acc1: 0.831, acc5: 0.972\
+Training loss: 1.074, acc1: 0.685, acc5: 0.929, ep: 17\
+\
+Validation loss: 2.393, acc1: 0.467, acc5: 0.781, ep: 17\
+Testing loss: 23.076, acc1: 0.000, acc5: 0.001\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.581, acc1: 0.811, acc5: 0.969\
+Training loss: 1.045, acc1: 0.685, acc5: 0.934, ep: 18\
+\
+Validation loss: 2.468, acc1: 0.475, acc5: 0.778, ep: 18\
+Testing loss: 24.888, acc1: 0.000, acc5: 0.000\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.647, acc1: 0.807, acc5: 0.976\
+Training loss: 0.979, acc1: 0.708, acc5: 0.946, ep: 19\
+\
+Validation loss: 2.655, acc1: 0.466, acc5: 0.758, ep: 19\
+Testing loss: 25.240, acc1: 0.000, acc5: 0.001\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.520, acc1: 0.811, acc5: 0.976\
+Training loss: 0.911, acc1: 0.719, acc5: 0.948, ep: 20\
+\
+Validation loss: 2.625, acc1: 0.469, acc5: 0.754, ep: 20\
+Testing loss: 26.491, acc1: 0.000, acc5: 0.000\
+\
+Early stopping applied\
+\
+Testing loss: 26.491, acc1: 0.000, acc5: 0.000\
+ensemble_embedding Parameter sets: [200, 200, 0.0035, 0.5, 1, 0.5, 30, 100, 130]\
+## Building an RNN model\
+Tensor("Unigram/Unigram/embedding_lookup:0", shape=(?, 50, 30), dtype=float32)\
+Tensor("Bigram/Bigram/embedding_lookup:0", shape=(?, 50, 100), dtype=float32)\
+Tensor("Trigram/Trigram/embedding_lookup:0", shape=(?, 50, 130), dtype=float32)\
+model variables ['Unigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Unigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Bigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Bigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Trigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Trigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Hidden1/Weights:0', 'Hidden1/Biases:0', 'Output/Weights:0', 'Output/Biases:0']\
+## Training\
+Percent: [####################] 100.00% Finished. tr loss: 10.145, acc1: 0.142, acc5: 0.299\
+Training loss: 6.338, acc1: 0.210, acc5: 0.397, ep: 0\
+\
+Validation loss: 2.734, acc1: 0.339, acc5: 0.664, ep: 0\
+Testing loss: 9.607, acc1: 0.000, acc5: 0.000\
+\
+Percent: [######              ] 30.69%  tr loss: 3.092, acc1: 0.307, acc5: 0.553}

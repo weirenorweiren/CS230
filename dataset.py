@@ -188,7 +188,7 @@ def experiment(model, dataset, params):
     max_top5 = 0
     max_top1_epoch = 0
     nochange_cnt = 0
-    early_stop = 5
+    early_stop = 3000 # Original value is 5, now change to #epochs
     checkpoint_dir = params['checkpoint_dir']
     continue_train = params['continue_train']
     train_epoch = params['train_epoch']
