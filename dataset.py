@@ -16,7 +16,7 @@ from utils import *
 def get_ethnicity_data(data_dir, params):
     is_ethnicity = params['ethnicity']
 
-    for root, dir, files in os.walk(data_dir): # Windows or Unix...
+    for root, dir, files in os.walk(data_dir): # Go over each files in data_dir
         unigram_set = []
         bigram_set = []
         trigram_set = []
@@ -109,12 +109,12 @@ def get_ethnicity_data(data_dir, params):
                     train_set = [unigram_set, bigram_set, trigram_set, length_set, labels]
                 elif 'val' in file_name:
                     valid_set = [unigram_set, bigram_set, trigram_set, length_set, labels]
-                elif 'ijcai' in file_name: # test
+                elif 'test' in file_name: # test; origin is 'ijcai', now change to test
                     test_set = [unigram_set, bigram_set, trigram_set, length_set, labels]
                 else:
                     assert True, 'not allowed file name %s'% file_name
                 
-                unigram_set = []
+                unigram_set = [] # Initialize for a new name input
                 bigram_set = []
                 trigram_set = []
                 length_set = []
@@ -162,10 +162,10 @@ def get_data(params):
     is_valid = params['is_valid']
     train_set, valid_set, test_set, dictionary = get_ethnicity_data(ethnicity_dir, params)
 
-    print(train_set[0][0])
-    print(train_set[1][0])
-    print(train_set[2][0])
-    print(train_set[3][0], train_set[4][0])
+    print(train_set[0][0]) # unigram2idx of first example
+    print(train_set[1][0]) # bigram2idx of first example
+    print(train_set[2][0]) # trigram2idx of first example
+    print(train_set[3][0], train_set[4][0]) # name_length and nationality of first example
 
     if not is_valid: # What's the purpose? Why to add valid_set[i] after each train_set[i]?
         train_set[0] = np.append(train_set[0], valid_set[0], axis=0)

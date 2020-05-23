@@ -84,7 +84,7 @@ flags.DEFINE_boolean("save", False, "True to save") # ***
 flags.DEFINE_string("model_name", "default", "Model name, auto saved as YMDHMS")
 flags.DEFINE_string("checkpoint_dir", "./checkpoint/", "Directory name to save the checkpoints [checkpoint]")
 
-flags.DEFINE_string("data_dir", "data/raw", "Directory name of input data") # ***
+flags.DEFINE_string("data_dir", "data/raw", "Directory name of input data") # *** We need to change the path to our data here
 
 flags.DEFINE_string("valid_result_path", "result/validation", "Validation result save path")
 flags.DEFINE_string("pred_result_path", "result/pred.txt", "Prediction result save path")
