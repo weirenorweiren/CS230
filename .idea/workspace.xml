@@ -2,19 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6bd611f2-f326-4188-990e-627a5894cab1" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/data_raw_test" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/data_raw_test" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/data_raw_train" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/data_raw_train" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/raw/data_raw_valid" beforeDir="false" afterPath="$PROJECT_DIR$/data/raw/data_raw_valid" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test/bigram_to_idx.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test/country_to_idx.txt" beforeDir="false" afterPath="$PROJECT_DIR$/data/test/country_to_idx.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test/data__test.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test/data__train.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test/trigram_to_idx.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/data/test/unigram_to_idx.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/preprocess_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/preprocess_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +66,7 @@
       <workItem from="1588808458538" duration="4230000" />
       <workItem from="1589058134159" duration="2056000" />
       <workItem from="1590287307963" duration="2145000" />
-      <workItem from="1590292270809" duration="1271000" />
+      <workItem from="1590292270809" duration="1591000" />
     </task>
     <servers />
   </component>

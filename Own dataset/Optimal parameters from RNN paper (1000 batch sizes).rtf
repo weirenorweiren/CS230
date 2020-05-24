@@ -1,0 +1,128 @@
+{\rtf1\ansi\ansicpg936\cocoartf2512
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red25\green25\blue25;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c12941\c12941\c12941;\cssrgb\c100000\c100000\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 a
+\f1\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \{'batch_size': 1000,\
+\pard\pardeftab720\partightenfactor0
+\cf2  'checkpoint_dir': './checkpoint/ensemble_embedding',\
+ 'continue_train': False,\
+ 'data_dir': './data/test',\
+ 'decay_rate': 0.99,\
+ 'decay_step': 100,\
+ 'default_params': True,\
+ 'detail_result_path': '/content/CS230/result/detail.txt',\
+ 'dim_bigram': 1876,\
+ 'dim_embed_bigram': 100,\
+ 'dim_embed_bigram_max': 200,\
+ 'dim_embed_bigram_min': 30,\
+ 'dim_embed_trigram': 130,\
+ 'dim_embed_trigram_max': 320,\
+ 'dim_embed_trigram_min': 30,\
+ 'dim_embed_unigram': 30,\
+ 'dim_embed_unigram_max': 100,\
+ 'dim_embed_unigram_min': 10,\
+ 'dim_hidden': 200,\
+ 'dim_hidden_max': 399,\
+ 'dim_hidden_min': 200,\
+ 'dim_output': 18,\
+ 'dim_rnn_cell': 200,\
+ 'dim_rnn_cell_max': 399,\
+ 'dim_rnn_cell_min': 200,\
+ 'dim_trigram': 14767,\
+ 'dim_unigram': 82,\
+ 'embed': True,\
+ 'embed_trainable': False,\
+ 'ensemble': True,\
+ 'ethnicity': False,\
+ 'hidden_dropout': 0.5,\
+ 'hidden_dropout_max': 0.8,\
+ 'hidden_dropout_min': 0.3,\
+ 'is_train': True,\
+ 'is_valid': True,\
+ 'learning_rate': 0.0035,\
+ 'learning_rate_max': 0.05,\
+ 'learning_rate_min': 0.005,\
+ 'lstm_dropout': 0.5,\
+ 'lstm_dropout_max': 0.8,\
+ 'lstm_dropout_min': 0.3,\
+ 'lstm_layer': 1,\
+ 'lstm_layer_max': 1,\
+ 'lstm_layer_min': 1,\
+ 'max_grad': 5,\
+ 'max_time_step': 50,\
+ 'min_grad': -5,\
+ 'model_name': 'ensemble_embedding',\
+ 'ngram': 3,\
+ 'pred_result_path': '/content/CS230/result/pred.txt',\
+ 'save': False,\
+ 'train_epoch': 3000,\
+ 'valid_iteration': 250,\
+ 'valid_result_path': '/content/CS230/result/validation'\}\
+reading 0_unigram_to_idx.txt of length 71\
+reading 1_bigram_to_idx.txt of length 1055\
+reading 2_trigram_to_idx.txt of length 11327\
+reading country_to_idx.txt of length 18\
+reading data_test_test of length 38346\
+reading data_test_train of length 115042\
+reading data_test_valid of length 38348\
+total data length: 115042 38348 38346\
+shape of data: (5, 115042) (5, 38348) (5, 38346)\
+name max length: 42\
+[39, 52, 45, 43, 50, 39, 0, 46, 39, 45, 47, 39, 57]\
+[304, 682, 470, 418, 615, 285, 33, 496, 297, 474, 526, 309]\
+[1588, 6779, 3921, 3215, 5777, 1212, 269, 4219, 1408, 3971, 4620]\
+13 6\
+shape of data: (5, 115042) (5, 38348) (5, 38346)\
+preprocessing done\
+\
+ensemble_embedding Parameter sets: [200, 200, 0.0035, 0.5, 1, 0.5, 30, 100, 130]\
+## Building an RNN model\
+Tensor("Unigram/Unigram/embedding_lookup:0", shape=(?, 50, 30), dtype=float32)\
+Tensor("Bigram/Bigram/embedding_lookup:0", shape=(?, 50, 100), dtype=float32)\
+Tensor("Trigram/Trigram/embedding_lookup:0", shape=(?, 50, 130), dtype=float32)\
+/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/gradients_impl.py:91: UserWarning: Converting sparse IndexedSlices to a dense Tensor of unknown shape. This may consume a large amount of memory.\
+  "Converting sparse IndexedSlices to a dense Tensor of unknown shape. "\
+model variables ['Unigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Unigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Bigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Bigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Trigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Trigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Hidden1/Weights:0', 'Hidden1/Biases:0', 'Output/Weights:0', 'Output/Biases:0']\
+## Training\
+Percent: [####################] 100.00% Finished. tr loss: 0.781, acc1: 0.810, acc5: 0.952\
+Training loss: 1.743, acc1: 0.707, acc5: 0.935, ep: 0\
+\
+Validation loss: 0.469, acc1: 0.862, acc5: 0.991, ep: 0\
+Testing loss: 0.505, acc1: 0.854, acc5: 0.992\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.463, acc1: 0.857, acc5: 1.000\
+Training loss: 0.575, acc1: 0.836, acc5: 0.990, ep: 1\
+\
+Validation loss: 0.319, acc1: 0.901, acc5: 0.994, ep: 1\
+Testing loss: 0.310, acc1: 0.904, acc5: 0.995\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.257, acc1: 0.905, acc5: 1.000\
+Training loss: 0.409, acc1: 0.874, acc5: 0.994, ep: 2\
+\
+Validation loss: 0.293, acc1: 0.907, acc5: 0.996, ep: 2\
+Testing loss: 0.288, acc1: 0.911, acc5: 0.997\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.061, acc1: 0.952, acc5: 1.000\
+Training loss: 0.315, acc1: 0.901, acc5: 0.996, ep: 3\
+\
+Validation loss: 0.241, acc1: 0.925, acc5: 0.997, ep: 3\
+Testing loss: 0.233, acc1: 0.928, acc5: 0.997\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.007, acc1: 1.000, acc5: 1.000\
+Training loss: 0.244, acc1: 0.921, acc5: 0.998, ep: 4\
+\
+Validation loss: 0.240, acc1: 0.928, acc5: 0.997, ep: 4\
+Testing loss: 0.236, acc1: 0.928, acc5: 0.998\
+\
+Percent: [####################] 100.00% Finished. tr loss: 0.069, acc1: 0.976, acc5: 1.000\
+Training loss: 0.224, acc1: 0.927, acc5: 0.998, ep: 5\
+\
+Validation loss: 0.225, acc1: 0.934, acc5: 0.998, ep: 5\
+Testing loss: 0.225, acc1: 0.938, acc5: 0.998\
+\
+Percent: [###                 ] 13.91%  tr loss: 0.230, acc1: 0.926, acc5: 0.999}

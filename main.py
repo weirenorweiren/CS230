@@ -162,28 +162,28 @@ def main(_):
     validation_writer.write("[dim_hidden, dim_rnn_cell, learning_rate, lstm_dropout, lstm_layer, hidden_dropout, dim_embed]\n")
     validation_writer.write("combination\ttop1\ttop5\tepoch\n")
 
-#     # Run the model
-#     for _ in range(saved_params['valid_iteration']):
-#         # Sample parameter sets
-#         params, combination = sample_parameters(saved_params.copy()) # If not default parameters, then update with initialization
-#         dataset = saved_dataset[:]
+    # Run the model
+    for _ in range(saved_params['valid_iteration']):
+        # Sample parameter sets
+        params, combination = sample_parameters(saved_params.copy()) # If not default parameters, then update with initialization
+        dataset = saved_dataset[:]
         
-#         # Initialize embeddings
-#         uni_init = get_char2vec(dataset[0][0][:], params['dim_embed_unigram'], dataset[3][0]) # Return initializer
-#         bi_init = get_char2vec(dataset[0][1][:], params['dim_embed_bigram'], dataset[3][4]) # The first [] is the outermost dimension == train_set or dictionary; [3][i] gives the outermost dimension in dictionary
-#         tri_init = get_char2vec(dataset[0][2][:], params['dim_embed_trigram'], dataset[3][5]) # Easy to understand with get_data()
+        # Initialize embeddings
+        uni_init = get_char2vec(dataset[0][0][:], params['dim_embed_unigram'], dataset[3][0]) # Return initializer
+        bi_init = get_char2vec(dataset[0][1][:], params['dim_embed_bigram'], dataset[3][4]) # The first [] is the outermost dimension == train_set or dictionary; [3][i] gives the outermost dimension in dictionary
+        tri_init = get_char2vec(dataset[0][2][:], params['dim_embed_trigram'], dataset[3][5]) # Easy to understand with get_data()
         
-#         print(model_name, 'Parameter sets: ', end='')
-#         pprint.PrettyPrinter().pprint(combination)
+        print(model_name, 'Parameter sets: ', end='')
+        pprint.PrettyPrinter().pprint(combination)
         
-#         rnn_model = RNN(params, [uni_init, bi_init, tri_init])
-#         top1, top5, ep = experiment(rnn_model, dataset, params)
+        rnn_model = RNN(params, [uni_init, bi_init, tri_init])
+        top1, top5, ep = experiment(rnn_model, dataset, params)
         
-#         validation_writer.write(str(combination) + '\t')
-#         validation_writer.write(str(top1) + '\t' + str(top5) + '\tEp:' + str(ep) + '\n')
+        validation_writer.write(str(combination) + '\t')
+        validation_writer.write(str(top1) + '\t' + str(top5) + '\tEp:' + str(ep) + '\n')
 
-#     validation_writer.close()
+    validation_writer.close()
 
-# if __name__ == '__main__':
-#     tf.app.run()
+if __name__ == '__main__':
+    tf.app.run()
 

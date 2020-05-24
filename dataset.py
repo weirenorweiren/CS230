@@ -105,9 +105,9 @@ def get_ethnicity_data(data_dir, params):
                         labels.append(nationality)
                     file_len = k + 1
 
-                if 'train' in file_name:
+                if 'train' in file_name: # The origin is 'train_ch'
                     train_set = [unigram_set, bigram_set, trigram_set, length_set, labels]
-                elif 'valid' in file_name:
+                elif 'valid' in file_name: # The origin is 'val'
                     valid_set = [unigram_set, bigram_set, trigram_set, length_set, labels]
                 elif 'test' in file_name: # test; origin is 'ijcai', now change to test
                     test_set = [unigram_set, bigram_set, trigram_set, length_set, labels]
