@@ -18,7 +18,7 @@ flags.DEFINE_integer("dim_unigram", 82, "Dimension of input, 42 or 82")
 flags.DEFINE_integer("dim_bigram", 1876, "Dimension of input, 925 or 1876")
 flags.DEFINE_integer("dim_trigram", 14767, "Dimension of input, 8573 or 14767")
 
-flags.DEFINE_integer("dim_output", 127, "Dimension of output, 95 or 127") # *** Number of nationalities
+flags.DEFINE_integer("dim_output", 18, "Dimension of output, 95 or 127") # *** Number of nationalities; the origin is 127
 
 flags.DEFINE_integer("max_time_step", 50, "Maximum time step of RNN") # Origin value is 60, now change to optimal
 flags.DEFINE_integer("min_grad", -5, "Minimum gradient to clip")
@@ -84,7 +84,7 @@ flags.DEFINE_boolean("save", False, "True to save") # ***
 flags.DEFINE_string("model_name", "default", "Model name, auto saved as YMDHMS")
 flags.DEFINE_string("checkpoint_dir", "./checkpoint/", "Directory name to save the checkpoints [checkpoint]")
 
-flags.DEFINE_string("data_dir", "data/raw", "Directory name of input data") # *** We need to change the path to our data here
+flags.DEFINE_string("data_dir", "data/test", "Directory name of input data") # *** We need to change the path to our data here; the origin is 'data/raw'
 
 flags.DEFINE_string("valid_result_path", "result/validation", "Validation result save path")
 flags.DEFINE_string("pred_result_path", "result/pred.txt", "Prediction result save path")
