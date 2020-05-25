@@ -105,6 +105,9 @@ def get_ethnicity_data(data_dir, params):
                         labels.append(nationality)
                     file_len = k + 1
 
+                    if len(length_set) >= len(data.readlines()) // 10 # Use to scale down the dataset
+                    	break
+
                 if 'train' in file_name: # The origin is 'train_ch'
                     train_set = [unigram_set, bigram_set, trigram_set, length_set, labels]
                 elif 'valid' in file_name: # The origin is 'val'
@@ -167,7 +170,7 @@ def get_data(params):
     print(train_set[2][0]) # trigram2idx of first example
     print(train_set[3][0], train_set[4][0]) # name_length and nationality of first example
 
-    if not is_valid: # What's the purpose? Why to add valid_set[i] after each train_set[i]?
+    if not is_valid: # Why to add valid_set[i] after each train_set[i]? To get rid of valid_set and ‘axis=0’ helps concatenate all elements inside horizontally 
         train_set[0] = np.append(train_set[0], valid_set[0], axis=0)
         train_set[1] = np.append(train_set[1], valid_set[1], axis=0)
         train_set[2] = np.append(train_set[2], valid_set[2], axis=0)
