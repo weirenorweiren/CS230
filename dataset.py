@@ -105,7 +105,7 @@ def get_ethnicity_data(data_dir, params):
                         labels.append(nationality)
                     file_len = k + 1
 
-                    if len(length_set) >= len(data.readlines()) // 10: # Use to scale down the dataset
+                    if len(length_set) >= len(open(os.path.join(root, file_name)).readlines()) // 10: # Use to scale down the dataset; data.readlines() would empty the data...
                     	break
 
                 if 'train' in file_name: # The origin is 'train_ch'
