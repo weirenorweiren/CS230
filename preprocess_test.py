@@ -70,7 +70,7 @@ if write: # Write into new txt files as required by RNN paper
 	name_to_country = list(name_to_country.items()) # dict.items() => a list of tuples with the value from dictionary
 	shuffle(name_to_country)
 	for name, country in name_to_country:
-		for char_idx, char in enumerate(name):
+		for char_idx, char in enumerate(name): # Create n-gram set
 			unigram_set.add(char)
 			if char_idx > 0:
 				bigram_set.add(name[char_idx - 1] + name[char_idx])

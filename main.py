@@ -80,7 +80,7 @@ flags.DEFINE_boolean("ethnicity", False, "True to test on ethnicity")
 flags.DEFINE_boolean("is_train", True, "True for training, False for testing")
 flags.DEFINE_boolean("is_valid", True, "True for validation, False for testing")
 flags.DEFINE_boolean("continue_train", False, "True to continue training from saved checkpoint. False for restarting.") # **
-flags.DEFINE_boolean("save", False, "True to save") # ***
+flags.DEFINE_boolean("save", False, "True to save") # **
 flags.DEFINE_string("model_name", "default", "Model name, auto saved as YMDHMS")
 flags.DEFINE_string("checkpoint_dir", "./checkpoint/", "Directory name to save the checkpoints [checkpoint]")
 
@@ -166,7 +166,7 @@ def main(_):
     for _ in range(saved_params['valid_iteration']):
         # Sample parameter sets
         params, combination = sample_parameters(saved_params.copy()) # If not default parameters, then update with initialization
-        dataset = saved_dataset[:]
+        dataset = saved_dataset[:] # Copy the content into dataset; if not, we would link the two variable that can be a problem
         
         # Initialize embeddings
         uni_init = get_char2vec(dataset[0][0][:], params['dim_embed_unigram'], dataset[3][0]) # Return initializer

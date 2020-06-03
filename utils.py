@@ -8,7 +8,7 @@ def progress(_progress):
         _progress = float(_progress)
     if not isinstance(_progress, float):
         _progress = 0
-        status = "error: progress var must be float\r\n"
+        status = "error: progress var must be float\r\n" # \r change the line but the cursor is still in this line 
     if _progress < 0:
         _progress = 0
         status = "Halt...\r\n"
@@ -16,6 +16,6 @@ def progress(_progress):
         _progress = 1
         status = "Finished."
     block = int(round(bar_length * _progress))
-    text = "\rPercent: [%s] %.2f%% %s" % ("#" * block + " " * (bar_length-block), _progress * 100, status)
+    text = "\rPercent: [%s] %.2f%% %s" % ("#" * block + " " * (bar_length-block), _progress * 100, status) # %% => '%'
 
     return text
