@@ -75,7 +75,7 @@ flags.DEFINE_boolean("default_params", True, "True to use default params")
 flags.DEFINE_boolean("ensemble", True, "True to use ensemble ngram") # *** 
 
 flags.DEFINE_boolean("embed", True, "True to use embedding table")
-flags.DEFINE_boolean("embed_trainable", False, "True to use embedding table")
+flags.DEFINE_boolean("embed_trainable", False, "True to use embedding table") # **
 flags.DEFINE_boolean("ethnicity", False, "True to test on ethnicity")
 flags.DEFINE_boolean("is_train", True, "True for training, False for testing")
 flags.DEFINE_boolean("is_valid", True, "True for validation, False for testing")
@@ -165,7 +165,7 @@ def main(_):
     # Run the model
     for _ in range(saved_params['valid_iteration']):
         # Sample parameter sets
-        params, combination = sample_parameters(saved_params.copy()) # If not default parameters, then update with initialization
+        params, combination = sample_parameters(saved_params.copy()) # If not default parameters, then update with initialization; return input dictionary and a combination LIST
         dataset = saved_dataset[:] # Copy the content into dataset; if not, we would link the two variable that can be a problem
         
         # Initialize embeddings

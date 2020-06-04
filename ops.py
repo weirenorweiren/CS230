@@ -1,8 +1,10 @@
 import tensorflow as tf
 import os
 
-from tensorflow.contrib.rnn.python.ops.rnn_cell import AttentionCellWrapper
-from tensorflow.contrib.tensorboard.plugins import projector
+from tensorflow.contrib.rnn.python.ops.rnn_cell import AttentionCellWrapper # Only used one time in a commented line
+from tensorflow.contrib.tensorboard.plugins import projector # Not in tf2 anymore...
+# # tf2
+# from tensorboard.plugins import projector
 
 
 def dropout(x, keep_prob):
