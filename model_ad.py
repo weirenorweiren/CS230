@@ -180,50 +180,70 @@ class RNN(object):
                 trainable=self.embed_trainable,
                 scope='Trigram')
 
+        fourgram_logits = self.ngram_logits(inputs=self.fourgram, 
+                length=self.lengths-3, 
+                dim_input=self.dim_fourgram,
+                dim_embed=self.dim_embed_fourgram if self.embed else None,
+                initializer=self.initializer[3],
+                trainable=self.embed_trainable,
+                scope='Fourgram')        
+
         if self.ensemble:
-            total_logits = tf.concat([unigram_logits, bigram_logits, trigram_logits], axis=1)
+            total_logits = tf.concat([unigram_logits, bigram_logits, trigram_logits, fourgram_logits], axis=1) # Vectically 
         elif self.ngram == 1:
             total_logits = unigram_logits
         elif self.ngram == 2:
             total_logits = bigram_logits
         elif self.ngram == 3:
             total_logits = trigram_logits
+
+        elif self.ngram == 4:
+            total_logits = fourgram_logits
+
         else:
-            assert True, 'No specific ngram %d'% ngram
+            assert False, 'No specific ngram %d'% ngram
+
 
         hidden1 = linear(inputs=total_logits, 
                 output_dim=self.dim_hidden,
                 dropout_rate=self.hidden_dropout,
                 activation=tf.nn.relu,
-                scope='Hidden1')
+                scope='Hidden1') # Passing a hidden layer
         
-        logits = linear(inputs=total_logits,
+        logits = linear(inputs=hidden1,
             output_dim=self.dim_output, 
-            scope='Output')
+            scope='Output') # Passing half of the softmax layer
 
         self.logits = logits 
         self.losses = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits,
-            labels=self.labels))
+            labels=self.labels)) # Passing the other half and calculate the loss
 
         tf.summary.scalar('Loss', self.losses)
-        self.variables = tf.trainable_variables()
+        self.variables = tf.trainable_variables() # Return all variables with 'trainable=True'
 
         grads = []
-        for grad in tf.gradients(self.losses, self.variables):
+        for grad in tf.gradients(self.losses, self.variables): # Output the derivatives of ys (losses) with respect to xs (variables)
             if grad is not None:
                 grads.append(tf.clip_by_value(grad, self.min_grad, self.max_grad))
             else:
                 grads.append(grad)
-        self.optimize = self.optimizer.apply_gradients(zip(grads, self.variables), global_step=self.global_step)
+        self.optimize = self.optimizer.apply_gradients(zip(grads, self.variables), global_step=self.global_step) # If global_step was not None, that operation also increments global_step
 
         model_vars = [v for v in tf.global_variables()]
         print('model variables', [model_var.name for model_var in tf.trainable_variables()])
-        self.saver = tf.train.Saver(model_vars)
+        self.saver = tf.train.Saver(model_vars) # var_list => model_vars
+        # self.saver = tf.compat.v1.train.Saver(model_vars) # tf2
         self.merged_summary = tf.summary.merge_all()
+        # self.merged_summary = tf.compat.v1.summary.merge_all() # tf2
 
-    @staticmethod
+    @staticmethod # https://www.runoob.com/python/python-func-staticmethod.html
+    #tf1
     def reset_graph():
         tf.reset_default_graph()
+
+    #tf2
+    def reset_graph():
+        tf.compat.v1.reset_default_graph()
 
     def save(self, checkpoint_dir, step):
         file_name = "%s.model" % self.model_name
@@ -232,7 +252,6 @@ class RNN(object):
 
     def load(self, checkpoint_dir):
         file_name = "%s.model" % self.model_name
-        file_name += "-10800"
+        file_name += "-10800" # **
         self.saver.restore(self.session, os.path.join(checkpoint_dir, file_name))
         print("Model loaded", file_name)
-

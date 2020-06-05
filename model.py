@@ -140,7 +140,7 @@ class RNN(object):
         
         logits = linear(inputs=total_logits,
             output_dim=self.dim_output, 
-            scope='Output')
+            scope='Output') # !!!!!!!!!
 
         self.logits = logits 
         self.losses = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=logits,
