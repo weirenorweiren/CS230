@@ -237,6 +237,7 @@ class RNN(object):
         # self.merged_summary = tf.compat.v1.summary.merge_all() # tf2
 
     @staticmethod # https://www.runoob.com/python/python-func-staticmethod.html
+    # No need to rnn_model.RNN.load; just rnn_model.load because rnn_model has related to RNN class
     #tf1
     def reset_graph():
         tf.reset_default_graph()

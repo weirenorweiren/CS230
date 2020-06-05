@@ -88,7 +88,7 @@ flags.DEFINE_boolean("save", False, "True to save") # **
 flags.DEFINE_string("model_name", "default", "Model name, auto saved as YMDHMS")
 flags.DEFINE_string("checkpoint_dir", "./checkpoint/", "Directory name to save the checkpoints [checkpoint]")
 
-flags.DEFINE_string("data_dir", "data/ad", "Directory name of input data") # *** We need to change the path to our data here; the origin is 'data/raw'
+flags.DEFINE_string("data_dir", "data/ad", "Directory name of input data") # **
 
 flags.DEFINE_string("valid_result_path", "result/validation.txt", "Validation result save path")
 flags.DEFINE_string("pred_result_path", "result/pred.txt", "Prediction result save path")
@@ -107,12 +107,12 @@ def sample_parameters(params):
             params['hidden_dropout'],
             params['dim_embed_unigram'],
             params['dim_embed_bigram'],
-            params['dim_embed_trigram']
+            params['dim_embed_trigram'],
 
             params['dim_embed_fourgram']
     ]
 
-    if not params['default_params']: # If not set too use default params
+    if not params['default_params']: # Random setting
         combination[0] = params['dim_hidden'] = int(np.random.uniform(
                 params['dim_hidden_min'],
                 params['dim_hidden_max']) // 50) * 50 

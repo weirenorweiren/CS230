@@ -137,7 +137,7 @@ def get_ethnicity_data(data_dir, params):
                 elif 'test' in file_name: # test; origin is 'ijcai', now change to test
                     test_set = [unigram_set, bigram_set, trigram_set, fourgram_set, length_set, labels]
                 else:
-                    assert True, 'not allowed file name %s'% file_name
+                    assert False, 'not allowed file name %s'% file_name
                 
                 unigram_set = [] # Initialize for a new name input
                 bigram_set = []
@@ -240,7 +240,7 @@ def experiment(model, dataset, params): #params => a dictionary from flags; data
     if continue_train is not False:
         model.load(checkpoint_dir)
 
-    start_time = time.time()
+    start_time = time.time() # Not used! 
     for epoch_idx in range(train_epoch):
         train_cost, train_acc, train_acc5 = run(model, params, dataset[0], is_train=True) # Training process
         print("\nTraining loss: %.3f, acc1: %.3f, acc5: %.3f, ep: %d" % (train_cost, train_acc,
@@ -398,7 +398,7 @@ def top_n_acc(labels, logits, top):
 
 def save_result(logits, indexes, labels, inputs, dictionary, path):
     idx2unigram, unigram2idx, idx2country, country2idx, _, _, _ = dictionary 
-    top_n_logits = [logit.argsort()[-5:][::-1] for logit in logits] # Better not hand code here the -5
+    top_n_logits = [logit.argsort()[-5:][::-1] for logit in logits] # Better not hand code here the -5 by adding a 'top'
 
     f = open(path, 'w')
     for logit, logit_index, label, input in zip(top_n_logits, indexes, labels, inputs):
