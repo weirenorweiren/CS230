@@ -21,7 +21,7 @@ def lstm_cell(cell_dim, layer_num, dropout_rate):
     with tf.variable_scope('LSTM_Cell') as scope: # A context manager for defining ops that creates variables (layers)
     # https://morvanzhou.github.io/tutorials/machine-learning/tensorflow/5-12-scope/
         cell = tf.contrib.rnn.BasicLSTMCell(cell_dim, forget_bias=1.0, activation=tf.tanh, state_is_tuple=True) # #Units of LSTM cell 
-        cell = AttentionCellWrapper(cell, attn_length = 10, state_is_tuple=True) # **
+        cell = AttentionCellWrapper(cell, attn_length = 5, state_is_tuple=True) # ** Origin is 10
         cell = tf.contrib.rnn.DropoutWrapper(cell, output_keep_prob = 1 - dropout_rate)
         return tf.contrib.rnn.MultiRNNCell([cell] * layer_num, state_is_tuple=True)
 

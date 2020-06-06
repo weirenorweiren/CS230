@@ -1,0 +1,445 @@
+{\rtf1\ansi\ansicpg936\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fmodern\fcharset0 Courier-Bold;\f2\fswiss\fcharset0 Helvetica;
+}
+{\colortbl;\red255\green255\blue255;\red25\green25\blue25;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c12941\c12941\c12941;\cssrgb\c100000\c100000\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\fs28 \cf2 \cb3 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 \{'batch_size': 1000,\
+ 'checkpoint_dir': './checkpoint/ensemble_embedding',\
+ 'continue_train': False,\
+ 'data_dir': './data/ad',\
+ 'decay_rate': 0.99,\
+ 'decay_step': 100,\
+ 'default_params': True,\
+ 'detail_result_path': '/content/CS230/result/detail.txt',\
+ 'dim_bigram': 1876,\
+ 'dim_embed_bigram': 100,\
+ 'dim_embed_bigram_max': 200,\
+ 'dim_embed_bigram_min': 30,\
+ 'dim_embed_fourgram': 200,\
+ 'dim_embed_fourgram_max': 320,\
+ 'dim_embed_fourgram_min': 30,\
+ 'dim_embed_trigram': 130,\
+ 'dim_embed_trigram_max': 320,\
+ 'dim_embed_trigram_min': 30,\
+ 'dim_embed_unigram': 30,\
+ 'dim_embed_unigram_max': 100,\
+ 'dim_embed_unigram_min': 10,\
+ 'dim_fourgram': 50596,\
+ 'dim_hidden': 200,\
+ 'dim_hidden_max': 399,\
+ 'dim_hidden_min': 200,\
+ 'dim_output': 127,\
+ 'dim_rnn_cell': 200,\
+ 'dim_rnn_cell_max': 399,\
+ 'dim_rnn_cell_min': 200,\
+ 'dim_trigram': 14767,\
+ 'dim_unigram': 82,\
+ 'embed': True,\
+ 'embed_trainable': True,\
+ 'ensemble': True,\
+ 'ethnicity': False,\
+ 'hidden_dropout': 0.5,\
+ 'hidden_dropout_max': 0.8,\
+ 'hidden_dropout_min': 0.3,\
+ 'is_train': True,\
+ 'is_valid': True,\
+ 'learning_rate': 0.0035,\
+ 'learning_rate_max': 0.05,\
+ 'learning_rate_min': 0.005,\
+ 'lstm_dropout': 0.5,\
+ 'lstm_dropout_max': 0.8,\
+ 'lstm_dropout_min': 0.3,\
+ 'lstm_layer': 1,\
+ 'lstm_layer_max': 1,\
+ 'lstm_layer_min': 1,\
+ 'max_grad': 5,\
+ 'max_time_step': 50,\
+ 'min_grad': -5,\
+ 'model_name': 'ensemble_embedding',\
+ 'ngram': 4,\
+ 'pred_result_path': '/content/CS230/result/pred.txt',\
+ 'save': False,\
+ 'train_epoch': 3000,\
+ 'valid_iteration': 250,\
+ 'valid_result_path': '/content/CS230/result/validation.txt'\}\
+ignoring file .DS_Store\
+reading .DS_Store of length 0\
+reading 0_unigram_to_idx.txt of length 82\
+reading 1_bigram_to_idx.txt of length 1876\
+reading 2_trigram_to_idx.txt of length 14767\
+reading 3_fourgram_to_idx.txt of length 50596\
+reading country_to_idx.txt of length 127\
+reading data_ad_test of length 3543\
+reading data_ad_train of length 10633\
+reading data_ad_valid of length 3545\
+total data length: 10633 3545 3543\
+shape of data: (6, 10633) (6, 3545) (6, 3543)\
+name max length: 47\
+[11, 43, 48, 44, 48, 0, 19, 8, 29, 25, 21, 16, 10]\
+[290, 1400, 1529, 1421, 1515, 16, 616, 152, 1023, 848, 708, 485]\
+[2592, 11821, 12836, 11953, 12712, 337, 5224, 1504, 9049, 7419, 6126]\
+[9961, 40449, 44322, 40891, 43939, 1839, 18296, 6496, 31204, 25809]\
+13 124\
+shape of data: (6, 10633) (6, 3545) (6, 3543)\
+preprocessing done\
+\
+28\
+\pard\pardeftab720\partightenfactor0
+\cf2 \
+ensemble_embedding Parameter sets: [200, 200, 0.0035, 0.5, 1, 0.5, 30, 100, 130, 200]\
+## Building an RNN model\
+Tensor("Unigram/Unigram/embedding_lookup:0", shape=(?, 50, 30), dtype=float32)\
+Tensor("Bigram/Bigram/embedding_lookup:0", shape=(?, 50, 100), dtype=float32)\
+Tensor("Trigram/Trigram/embedding_lookup:0", shape=(?, 50, 130), dtype=float32)\
+Tensor("Fourgram/Fourgram/embedding_lookup:0", shape=(?, 50, 200), dtype=float32)\
+/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/gradients_impl.py:91: UserWarning: Converting sparse IndexedSlices to a dense Tensor of unknown shape. This may consume a large amount of memory.\
+  "Converting sparse IndexedSlices to a dense Tensor of unknown shape. "\
+model variables ['Unigram/embed:0', 'Unigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Unigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Bigram/embed:0', 'Bigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Bigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Trigram/embed:0', 'Trigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Trigram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Fourgram/embed:0', 'Fourgram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/weights:0', 'Fourgram/RNN/multi_rnn_cell/cell_0/basic_lstm_cell/biases:0', 'Hidden1/Weights:0', 'Hidden1/Biases:0', 'Output/Weights:0', 'Output/Biases:0']\
+## Training\
+Percent: [####################] 100.00% Finished. tr loss: 12.015, acc1: 0.017, acc5: 0.077\
+Training loss: 60.242, acc1: 0.019, acc5: 0.067, ep: 0\
+\
+Validation loss: 4.782, acc1: 0.025, acc5: 0.218, ep: 0\
+Testing loss: 4.792, acc1: 0.026, acc5: 0.217\
+\
+Percent: [####################] 100.00% Finished. tr loss: 6.287, acc1: 0.035, acc5: 0.161\
+Training loss: 8.448, acc1: 0.028, acc5: 0.115, ep: 1\
+\
+Validation loss: 4.750, acc1: 0.062, acc5: 0.363, ep: 1\
+Testing loss: 4.756, acc1: 0.064, acc5: 0.351\
+\
+Percent: [####################] 100.00% Finished. tr loss: 5.184, acc1: 0.044, acc5: 0.215\
+Training loss: 5.574, acc1: 0.039, acc5: 0.184, ep: 2\
+\
+Validation loss: 4.695, acc1: 0.102, acc5: 0.367, ep: 2\
+Testing loss: 4.700, acc1: 0.084, acc5: 0.352\
+\
+Percent: [####################] 100.00% Finished. tr loss: 4.871, acc1: 0.079, acc5: 0.295\
+Training loss: 4.968, acc1: 0.073, acc5: 0.256, ep: 3\
+\
+Validation loss: 4.595, acc1: 0.121, acc5: 0.373, ep: 3\
+Testing loss: 4.612, acc1: 0.107, acc5: 0.361\
+\
+Percent: [####################] 100.00% Finished. tr loss: 4.660, acc1: 0.090, acc5: 0.330\
+Training loss: 4.763, acc1: 0.086, acc5: 0.287, ep: 4\
+\
+Validation loss: 4.523, acc1: 0.128, acc5: 0.375, ep: 4\
+Testing loss: 4.537, acc1: 0.117, acc5: 0.365\
+\
+Percent: [####################] 100.00% Finished. tr loss: 4.490, acc1: 0.133, acc5: 0.340\
+Training loss: 4.648, acc1: 0.105, acc5: 0.298, ep: 5\
+\
+Validation loss: 4.436, acc1: 0.147, acc5: 0.366, ep: 5\
+Testing loss: 4.456, acc1: 0.130, acc5: 0.369\
+\
+Percent: [####################] 100.00% Finished. tr loss: 4.376, acc1: 0.112, acc5: 0.330\
+Training loss: 4.523, acc1: 0.110, acc5: 0.312, ep: 6\
+\
+Validation loss: 4.357, acc1: 0.154, acc5: 0.375, ep: 6\
+Testing loss: 4.366, acc1: 0.141, acc5: 0.379\
+\
+Percent: [####################] 100.00% Finished. tr loss: 4.288, acc1: 0.141, acc5: 0.354\
+Training loss: 4.427, acc1: 0.125, acc5: 0.331, ep: 7\
+\
+Validation loss: 4.295, acc1: 0.167, acc5: 0.387, ep: 7\
+Testing loss: 4.286, acc1: 0.156, acc5: 0.394\
+\
+Percent: [####################] 100.00% Finished. tr loss: 4.313, acc1: 0.145, acc5: 0.381\
+Training loss: 4.361, acc1: 0.130, acc5: 0.344, ep: 8\
+\
+Validation loss: 4.209, acc1: 0.170, acc5: 0.391, ep: 8\
+Testing loss: 4.209, acc1: 0.160, acc5: 0.398\
+\
+Percent: [####################] 100.00% Finished. tr loss: 4.060, acc1: 0.163, acc5: 0.397\
+Training loss: 4.238, acc1: 0.144, acc5: 0.357, ep: 9\
+\
+Validation loss: 4.165, acc1: 0.186, acc5: 0.411, ep: 9\
+Testing loss: 4.201, acc1: 0.169, acc5: 0.406\
+\
+Percent: [####################] 100.00% Finished. tr loss: 3.988, acc1: 0.171, acc5: 0.401\
+Training loss: 4.170, acc1: 0.151, acc5: 0.365, ep: 10\
+\
+Validation loss: 4.139, acc1: 0.173, acc5: 0.394, ep: 10\
+Testing loss: 4.137, acc1: 0.160, acc5: 0.405\
+\
+Percent: [####################] 100.00% Finished. tr loss: 3.977, acc1: 0.174, acc5: 0.409\
+Training loss: 4.100, acc1: 0.161, acc5: 0.382, ep: 11\
+\
+Validation loss: 4.132, acc1: 0.176, acc5: 0.405, ep: 11\
+Testing loss: 4.112, acc1: 0.165, acc5: 0.409\
+\
+Percent: [####################] 100.00% Finished. tr loss: 3.961, acc1: 0.190, acc5: 0.414\
+Training loss: 4.048, acc1: 0.175, acc5: 0.386, ep: 12\
+\
+Validation loss: 4.089, acc1: 0.191, acc5: 0.413, ep: 12\
+Testing loss: 4.084, acc1: 0.174, acc5: 0.421\
+\
+Percent: [####################] 100.00% Finished. tr loss: 3.794, acc1: 0.193, acc5: 0.425\
+Training loss: 3.945, acc1: 0.180, acc5: 0.396, ep: 13\
+\
+Validation loss: 4.007, acc1: 0.201, acc5: 0.426, ep: 13\
+Testing loss: 3.984, acc1: 0.195, acc5: 0.441\
+\
+Percent: [####################] 100.00% Finished. tr loss: 3.756, acc1: 0.193, acc5: 0.439\
+Training loss: 3.889, acc1: 0.183, acc5: 0.410, ep: 14\
+\
+Validation loss: 3.948, acc1: 0.227, acc5: 0.459, ep: 14\
+Testing loss: 3.936, acc1: 0.213, acc5: 0.470\
+\
+Percent: [####################] 100.00% Finished. tr loss: 3.582, acc1: 0.245, acc5: 0.480\
+Training loss: 3.798, acc1: 0.216, acc5: 0.444, ep: 15\
+\
+Validation loss: 3.856, acc1: 0.255, acc5: 0.480, ep: 15\
+Testing loss: 3.870, acc1: 0.245, acc5: 0.493\
+\
+Percent: [####################] 100.00% Finished. tr loss: 3.442, acc1: 0.272, acc5: 0.502\
+Training loss: 3.667, acc1: 0.233, acc5: 0.453, ep: 16\
+\
+Validation loss: 3.751, acc1: 0.262, acc5: 0.489, ep: 16\
+Testing loss: 3.709, acc1: 0.260, acc5: 0.509\
+\
+Percent: [####################] 100.00% Finished. tr loss: 3.392, acc1: 0.294, acc5: 0.524\
+Training loss: 3.568, acc1: 0.265, acc5: 0.474, ep: 17\
+\
+Validation loss: 3.736, acc1: 0.262, acc5: 0.487, ep: 17\
+Testing loss: 3.705, acc1: 0.265, acc5: 0.506\
+\
+Percent: [####################] 100.00% Finished. tr loss: 3.319, acc1: 0.318, acc5: 0.509\
+Training loss: 3.464, acc1: 0.273, acc5: 0.476, ep: 18\
+\
+Validation loss: 3.744, acc1: 0.279, acc5: 0.493, ep: 18\
+Testing loss: 3.706, acc1: 0.283, acc5: 0.508\
+\
+Percent: [####################] 100.00% Finished. tr loss: 3.157, acc1: 0.330, acc5: 0.531\
+Training loss: 3.328, acc1: 0.301, acc5: 0.501, ep: 19\
+\
+Validation loss: 3.719, acc1: 0.263, acc5: 0.489, ep: 19\
+Testing loss: 3.686, acc1: 0.272, acc5: 0.511\
+\
+Percent: [####################] 100.00% Finished. tr loss: 3.115, acc1: 0.344, acc5: 0.545\
+Training loss: 3.327, acc1: 0.303, acc5: 0.504, ep: 20\
+\
+Validation loss: 3.684, acc1: 0.247, acc5: 0.474, ep: 20\
+Testing loss: 3.621, acc1: 0.268, acc5: 0.497\
+\
+Percent: [####################] 100.00% Finished. tr loss: 3.098, acc1: 0.352, acc5: 0.562\
+Training loss: 3.225, acc1: 0.314, acc5: 0.514, ep: 21\
+\
+Validation loss: 3.663, acc1: 0.275, acc5: 0.505, ep: 21\
+Testing loss: 3.615, acc1: 0.276, acc5: 0.509\
+\
+Percent: [####################] 100.00% Finished. tr loss: 2.877, acc1: 0.384, acc5: 0.566\
+Training loss: 3.132, acc1: 0.328, acc5: 0.519, ep: 22\
+\
+Validation loss: 3.687, acc1: 0.291, acc5: 0.515, ep: 22\
+Testing loss: 3.613, acc1: 0.305, acc5: 0.527\
+\
+Percent: [####################] 100.00% Finished. tr loss: 2.851, acc1: 0.389, acc5: 0.592\
+Training loss: 3.089, acc1: 0.347, acc5: 0.540, ep: 23\
+\
+Validation loss: 3.693, acc1: 0.276, acc5: 0.510, ep: 23\
+Testing loss: 3.611, acc1: 0.287, acc5: 0.523\
+\
+Percent: [####################] 100.00% Finished. tr loss: 2.718, acc1: 0.406, acc5: 0.605\
+Training loss: 2.976, acc1: 0.361, acc5: 0.547, ep: 24\
+\
+Validation loss: 3.655, acc1: 0.272, acc5: 0.513, ep: 24\
+Testing loss: 3.529, acc1: 0.279, acc5: 0.527\
+\
+Percent: [####################] 100.00% Finished. tr loss: 2.793, acc1: 0.392, acc5: 0.602\
+Training loss: 3.011, acc1: 0.355, acc5: 0.555, ep: 25\
+\
+Validation loss: 3.661, acc1: 0.300, acc5: 0.482, ep: 25\
+Testing loss: 3.593, acc1: 0.314, acc5: 0.505\
+\
+Percent: [####################] 100.00% Finished. tr loss: 2.696, acc1: 0.422, acc5: 0.608\
+Training loss: 2.852, acc1: 0.376, acc5: 0.572, ep: 26\
+\
+Validation loss: 3.641, acc1: 0.308, acc5: 0.516, ep: 26\
+Testing loss: 3.666, acc1: 0.312, acc5: 0.521\
+\
+Percent: [####################] 100.00% Finished. tr loss: 2.626, acc1: 0.419, acc5: 0.616\
+Training loss: 2.789, acc1: 0.382, acc5: 0.578, ep: 27\
+\
+Validation loss: 3.634, acc1: 0.301, acc5: 0.500, ep: 27\
+Testing loss: 3.625, acc1: 0.307, acc5: 0.510\
+\
+Percent: [####################] 100.00% Finished. tr loss: 2.589, acc1: 0.431, acc5: 0.619\
+Training loss: 2.722, acc1: 0.402, acc5: 0.584, ep: 28\
+\
+Validation loss: 3.579, acc1: 0.314, acc5: 0.511, ep: 28\
+Testing loss: 3.559, acc1: 0.312, acc5: 0.534\
+\
+Percent: [####################] 100.00% Finished. tr loss: 2.492, acc1: 0.447, acc5: 0.633\
+Training loss: 2.658, acc1: 0.408, acc5: 0.602, ep: 29\
+\
+Validation loss: 3.558, acc1: 0.310, acc5: 0.518, ep: 29\
+Testing loss: 3.512, acc1: 0.319, acc5: 0.542\
+\
+Percent: [####################] 100.00% Finished. tr loss: 2.461, acc1: 0.447, acc5: 0.641\
+Training loss: 2.610, acc1: 0.416, acc5: 0.603, ep: 30\
+\
+Validation loss: 3.683, acc1: 0.318, acc5: 0.519, ep: 30\
+Testing loss: 3.649, acc1: 0.324, acc5: 0.534\
+\
+Percent: [####################] 100.00% Finished. tr loss: 2.448, acc1: 0.425, acc5: 0.632\
+Training loss: 2.555, acc1: 0.412, acc5: 0.613, ep: 31\
+\
+Validation loss: 3.584, acc1: 0.325, acc5: 0.517, ep: 31\
+Testing loss: 3.509, acc1: 0.327, acc5: 0.533\
+\
+Percent: [####################] 100.00% Finished. tr loss: 2.240, acc1: 0.483, acc5: 0.662\
+Training loss: 2.458, acc1: 0.439, acc5: 0.626, ep: 32\
+\
+Validation loss: 3.770, acc1: 0.333, acc5: 0.525, ep: 32\
+Testing loss: 3.792, acc1: 0.349, acc5: 0.544\
+\
+Percent: [####################] 100.00% Finished. tr loss: 2.081, acc1: 0.526, acc5: 0.692\
+Training loss: 2.313, acc1: 0.474, acc5: 0.646, ep: 33\
+\
+Validation loss: 3.558, acc1: 0.322, acc5: 0.524, ep: 33\
+Testing loss: 3.529, acc1: 0.347, acc5: 0.553\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.984, acc1: 0.528, acc5: 0.698\
+Training loss: 2.295, acc1: 0.480, acc5: 0.649, ep: 34\
+\
+Validation loss: 3.564, acc1: 0.355, acc5: 0.550, ep: 34\
+Testing loss: 3.502, acc1: 0.361, acc5: 0.560\
+\
+Percent: [####################] 100.00% Finished. tr loss: 2.011, acc1: 0.536, acc5: 0.700\
+Training loss: 2.223, acc1: 0.492, acc5: 0.659, ep: 35\
+\
+Validation loss: 3.596, acc1: 0.362, acc5: 0.553, ep: 35\
+Testing loss: 3.511, acc1: 0.367, acc5: 0.573\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.856, acc1: 0.561, acc5: 0.709\
+Training loss: 2.112, acc1: 0.512, acc5: 0.672, ep: 36\
+\
+Validation loss: 3.572, acc1: 0.374, acc5: 0.573, ep: 36\
+Testing loss: 3.567, acc1: 0.376, acc5: 0.584\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.908, acc1: 0.561, acc5: 0.720\
+Training loss: 2.098, acc1: 0.525, acc5: 0.686, ep: 37\
+\
+Validation loss: 3.553, acc1: 0.355, acc5: 0.565, ep: 37\
+Testing loss: 3.540, acc1: 0.359, acc5: 0.578\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.734, acc1: 0.610, acc5: 0.758\
+Training loss: 1.973, acc1: 0.557, acc5: 0.708, ep: 38\
+\
+Validation loss: 3.816, acc1: 0.385, acc5: 0.595, ep: 38\
+Testing loss: 3.717, acc1: 0.375, acc5: 0.599\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.749, acc1: 0.588, acc5: 0.746\
+Training loss: 1.997, acc1: 0.551, acc5: 0.708, ep: 39\
+\
+Validation loss: 3.860, acc1: 0.371, acc5: 0.580, ep: 39\
+Testing loss: 3.687, acc1: 0.360, acc5: 0.584\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.789, acc1: 0.622, acc5: 0.766\
+Training loss: 1.912, acc1: 0.584, acc5: 0.724, ep: 40\
+\
+Validation loss: 3.920, acc1: 0.388, acc5: 0.593, ep: 40\
+Testing loss: 3.831, acc1: 0.384, acc5: 0.598\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.507, acc1: 0.632, acc5: 0.787\
+Training loss: 1.784, acc1: 0.600, acc5: 0.745, ep: 41\
+\
+Validation loss: 3.960, acc1: 0.379, acc5: 0.592, ep: 41\
+Testing loss: 3.748, acc1: 0.381, acc5: 0.604\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.477, acc1: 0.671, acc5: 0.782\
+Training loss: 1.728, acc1: 0.621, acc5: 0.747, ep: 42\
+\
+Validation loss: 4.405, acc1: 0.392, acc5: 0.591, ep: 42\
+Testing loss: 4.202, acc1: 0.386, acc5: 0.598\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.469, acc1: 0.671, acc5: 0.799\
+Training loss: 1.664, acc1: 0.627, acc5: 0.753, ep: 43\
+\
+Validation loss: 4.060, acc1: 0.361, acc5: 0.586, ep: 43\
+Testing loss: 3.745, acc1: 0.375, acc5: 0.600\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.380, acc1: 0.679, acc5: 0.820\
+Training loss: 1.611, acc1: 0.636, acc5: 0.770, ep: 44\
+\
+Validation loss: 4.688, acc1: 0.394, acc5: 0.600, ep: 44\
+Testing loss: 4.205, acc1: 0.398, acc5: 0.612\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.325, acc1: 0.701, acc5: 0.817\
+Training loss: 1.530, acc1: 0.660, acc5: 0.779, ep: 45\
+\
+Validation loss: 4.354, acc1: 0.380, acc5: 0.571, ep: 45\
+Testing loss: 3.962, acc1: 0.385, acc5: 0.596\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.219, acc1: 0.733, acc5: 0.834\
+Training loss: 1.472, acc1: 0.677, acc5: 0.790, ep: 46\
+\
+Validation loss: 5.065, acc1: 0.385, acc5: 0.580, ep: 46\
+Testing loss: 4.587, acc1: 0.392, acc5: 0.604\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.146, acc1: 0.730, acc5: 0.828\
+Training loss: 1.394, acc1: 0.688, acc5: 0.797, ep: 47\
+\
+Validation loss: 4.565, acc1: 0.382, acc5: 0.575, ep: 47\
+Testing loss: 4.310, acc1: 0.374, acc5: 0.592\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.224, acc1: 0.701, acc5: 0.831\
+Training loss: 1.387, acc1: 0.683, acc5: 0.803, ep: 48\
+\
+Validation loss: 4.757, acc1: 0.382, acc5: 0.588, ep: 48\
+Testing loss: 4.441, acc1: 0.376, acc5: 0.604\
+\
+Percent: [####################] 100.00% Finished. tr loss: 1.110, acc1: 0.738, acc5: 0.845\
+Training loss: 1.350, acc1: 0.699, acc5: 0.810, ep: 49\
+\
+Validation loss: 5.511, acc1: 0.388, acc5: 0.595, ep: 49\
+Testing loss: 5.004, acc1: 0.394, acc5: 0.618\
+\
+Early stopping applied\
+\
+Testing loss: 5.004, acc1: 0.394, acc5: 0.618\
+---------------------------------------------------------------------------\
+TypeError                                 Traceback (most recent call last)\
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://localhost:8080/#"}}{\fldrslt \cf2 \ul \ulc2 <ipython-input-7-c154a0fddfb8>}} in <module>()\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b \cf2      16
+\f0\b0  \
+
+\f1\b      17
+\f0\b0      rnn_model = RNN(params, [uni_init, bi_init, tri_init, four_init])\
+---> 18     top1, top5, ep = experiment(rnn_model, dataset, params) # With train_iterations; return max_top1, max_top5, max_top1_epoch\
+
+\f1\b      19
+\f0\b0  \
+
+\f1\b      20
+\f0\b0      validation_writer.write(str(combination) + '\\t')\
+\
+\pard\pardeftab720\partightenfactor0
+{\field{\*\fldinst{HYPERLINK "https://localhost:8080/#"}}{\fldrslt \cf2 \ul \ulc2 /content/CS230/dataset_ad.py}} in experiment(model, dataset, params)\
+\pard\pardeftab720\partightenfactor0
+
+\f1\b \cf2     284
+\f0\b0  \
+
+\f1\b     285
+\f0\b0      # model.save(checkpoint_dir, sess.run(model.global_step))\
+--> 286     model.reset_graph()\
+
+\f1\b     287
+\f0\b0      return max_top1, max_top5, max_top1_epoch\
+
+\f1\b     288
+\f0\b0  \
+\
+TypeError: reset_graph() takes 0 positional arguments but 1 was given
+\f2 \
+}

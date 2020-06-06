@@ -53,7 +53,7 @@ flags.DEFINE_integer("dim_embed_trigram", 130, "Dimension of character embedding
 flags.DEFINE_integer("dim_embed_trigram_min", 30, "Minimum dimension of character embedding")
 flags.DEFINE_integer("dim_embed_trigram_max", 320, "Maximum dimension of character embedding")
 
-flags.DEFINE_integer("dim_embed_fourgram", 200, "Dimension of character embedding") # ** Define by ourselves
+flags.DEFINE_integer("dim_embed_fourgram", 125, "Dimension of character embedding") # ** 125 is the better than 200/150/100
 flags.DEFINE_integer("dim_embed_fourgram_min", 30, "Minimum dimension of character embedding")
 flags.DEFINE_integer("dim_embed_fourgram_max", 320, "Maximum dimension of character embedding")
 
