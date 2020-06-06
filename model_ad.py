@@ -5,7 +5,7 @@
 import tensorflow as tf
 import os
 
-from ops import *
+from ops_ad import *
 
 # Classes let you abstract away details while programming
 class RNN(object): 

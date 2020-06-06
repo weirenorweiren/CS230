@@ -302,8 +302,8 @@ def run(model, params, dataset, dictionary=None, is_train=False, is_valid=False,
     
     unigram_set, bigram_set, trigram_set, fourgram_set, lengths, labels = dataset # _set
     if is_valid or is_test:
-        lstm_dropout = 1.0 # **
-        hidden_dropout = 1.0 # **
+        lstm_dropout = 0.5 # ** The origin is 1 which should refer to keep_prob
+        hidden_dropout = 0.5 # ** The origin is 1 which should refer to keep_prob
 
     for datum_idx in range(0, len(unigram_set), batch_size): # len(unigram_set) => #examples; select one batch to play with 
         batch_unigram = unigram_set[datum_idx:datum_idx+batch_size]
