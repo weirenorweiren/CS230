@@ -158,7 +158,7 @@ def mask_by_index(batch_size, input_len, max_time_step):
         return weight
 
 # tf1
-def linear(inputs, output_dim, dropout_rate=1.0, regularize_rate=0, activation=None, scope='Linear'):
+def linear(inputs, output_dim, dropout_rate=0, regularize_rate=0, activation=None, scope='Linear'): # Origin dropout=1.0 which refers to keep_prob
 # inputs => total_logits -> output from LSTM of shape (1,n) where n refers to (the sum of) #LSTM units 
 # output_dim => dim_hidden
 # dropout_rate => hidden_dropout
@@ -182,7 +182,7 @@ def linear(inputs, output_dim, dropout_rate=1.0, regularize_rate=0, activation=N
             return dropout(activation(tf.matmul(inputs, weights) + biases), dropout_rate)
 
 # # tf2
-# def linear(inputs, output_dim, dropout_rate=1.0, regularize_rate=0, activation=None, scope='Linear'):
+# def linear(inputs, output_dim, dropout_rate=0, regularize_rate=0, activation=None, scope='Linear'):
 #     with tf.variable_scope(scope) as scope:
 #         input_dim = inputs.get_shape().as_list()[-1]
 #         inputs = tf.reshape(inputs, [-1, input_dim]) # Seems (1,n) again
