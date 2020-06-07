@@ -13,13 +13,13 @@ flags = tf.app.flags # Pass the parameters
 
 # Default parameters
 flags.DEFINE_integer("train_epoch", 3000, "Epoch to train")
-flags.DEFINE_integer("dim_unigram", 82, "Dimension of input, 82")
-flags.DEFINE_integer("dim_bigram", 1876, "Dimension of input, 1876")
-flags.DEFINE_integer("dim_trigram", 14767, "Dimension of input, 14767") 
+flags.DEFINE_integer("dim_unigram", 71, "Dimension of input, 71 or 82") # Own data or RNN data
+flags.DEFINE_integer("dim_bigram", 1055, "Dimension of input, 1055 or 1876")
+flags.DEFINE_integer("dim_trigram", 11327, "Dimension of input, 11327 or 14767") 
 
-flags.DEFINE_integer("dim_fourgram", 50596, "Dimension of input, 50596")
+flags.DEFINE_integer("dim_fourgram", 80874, "Dimension of input, 80874 or 50596")
 
-flags.DEFINE_integer("dim_output", 127, "Dimension of output, 127") # Number of nationalities
+flags.DEFINE_integer("dim_output", 18, "Dimension of output, 18 or 127") # Number of nationalities
 flags.DEFINE_integer("max_time_step", 50, "Maximum time step of RNN") # Origin value is 60, now change to paper optimal
 flags.DEFINE_integer("min_grad", -5, "Minimum gradient to clip")
 flags.DEFINE_integer("max_grad", 5, "Maximum gradient to clip")
@@ -53,7 +53,7 @@ flags.DEFINE_integer("dim_embed_trigram", 130, "Dimension of character embedding
 flags.DEFINE_integer("dim_embed_trigram_min", 30, "Minimum dimension of character embedding")
 flags.DEFINE_integer("dim_embed_trigram_max", 320, "Maximum dimension of character embedding")
 
-flags.DEFINE_integer("dim_embed_fourgram", 125, "Dimension of character embedding") # ** 125 is the better than 200/150/100
+flags.DEFINE_integer("dim_embed_fourgram", 200, "Dimension of character embedding") # ** 125 is the better for RNN data than 200/150/100
 flags.DEFINE_integer("dim_embed_fourgram_min", 30, "Minimum dimension of character embedding")
 flags.DEFINE_integer("dim_embed_fourgram_max", 320, "Maximum dimension of character embedding")
 
