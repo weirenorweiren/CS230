@@ -69,7 +69,7 @@ flags.DEFINE_float("hidden_dropout", 0.5, "Dropout rate of hidden layer")
 flags.DEFINE_float("hidden_dropout_min", 0.3, "Minimum dropout rate of hidden layer")
 flags.DEFINE_float("hidden_dropout_max", 0.8, "Maximum dropout rate of hidden layer")
 
-flags.DEFINE_float("learning_rate", 0.0035, "Learning rate of the optimzier") # ** Origin value is 0.01, now change to paper optimal
+flags.DEFINE_float("learning_rate", 0.01, "Learning rate of the optimzier") # ** Origin value is 0.01
 flags.DEFINE_float("learning_rate_min", 5e-3, "Minimum learning rate of the optimzier")
 flags.DEFINE_float("learning_rate_max", 5e-2, "Maximum learning rate of the optimzier")
 
@@ -79,7 +79,7 @@ flags.DEFINE_boolean("default_params", True, "True to use default params")
 flags.DEFINE_boolean("ensemble", True, "True to use ensemble ngram") # ** 
 
 flags.DEFINE_boolean("embed", True, "True to use embedding table")
-flags.DEFINE_boolean("embed_trainable", True, "True to use embedding table") # **!!! Origin value is False
+flags.DEFINE_boolean("embed_trainable", False, "True to use embedding table") # **!!! Origin value is False
 flags.DEFINE_boolean("ethnicity", False, "True to test on ethnicity")
 flags.DEFINE_boolean("is_train", True, "True for training, False for testing")
 flags.DEFINE_boolean("is_valid", True, "True for validation, False for testing")
