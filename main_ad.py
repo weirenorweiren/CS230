@@ -20,10 +20,10 @@ flags.DEFINE_integer("dim_trigram", 11327, "Dimension of input, 11327 or 14767")
 flags.DEFINE_integer("dim_fourgram", 80874, "Dimension of input, 80874 or 50596")
 
 flags.DEFINE_integer("dim_output", 18, "Dimension of output, 18 or 127") # Number of nationalities
-flags.DEFINE_integer("max_time_step", 50, "Maximum time step of RNN") # Origin value is 60, now change to paper optimal
+flags.DEFINE_integer("max_time_step", 50, "Maximum time step of RNN") # Origin paper value is 60, now change to paper optimal
 flags.DEFINE_integer("min_grad", -5, "Minimum gradient to clip")
 flags.DEFINE_integer("max_grad", 5, "Maximum gradient to clip")
-flags.DEFINE_integer("batch_size", 1000, "Size of batch") # Origin value is 300, now change to paper optimal
+flags.DEFINE_integer("batch_size", 512, "Size of batch") # IMPORTANT; the bigger the better
 
 flags.DEFINE_integer("ngram", 4, "Ngram feature when ensemble = False.")
 
@@ -53,7 +53,7 @@ flags.DEFINE_integer("dim_embed_trigram", 130, "Dimension of character embedding
 flags.DEFINE_integer("dim_embed_trigram_min", 30, "Minimum dimension of character embedding")
 flags.DEFINE_integer("dim_embed_trigram_max", 320, "Maximum dimension of character embedding")
 
-flags.DEFINE_integer("dim_embed_fourgram", 200, "Dimension of character embedding") # ** 125 is the better for RNN data than 200/150/100
+flags.DEFINE_integer("dim_embed_fourgram", 200, "Dimension of character embedding") # ** 125 is better for RNN data than 200/150/100
 flags.DEFINE_integer("dim_embed_fourgram_min", 30, "Minimum dimension of character embedding")
 flags.DEFINE_integer("dim_embed_fourgram_max", 320, "Maximum dimension of character embedding")
 
@@ -69,7 +69,7 @@ flags.DEFINE_float("hidden_dropout", 0.5, "Dropout rate of hidden layer")
 flags.DEFINE_float("hidden_dropout_min", 0.3, "Minimum dropout rate of hidden layer")
 flags.DEFINE_float("hidden_dropout_max", 0.8, "Maximum dropout rate of hidden layer")
 
-flags.DEFINE_float("learning_rate", 0.01, "Learning rate of the optimzier") # ** Origin value is 0.01
+flags.DEFINE_float("learning_rate", 0.01, "Learning rate of the optimzier") # ** IMPORTANT; Origin value is 0.01
 flags.DEFINE_float("learning_rate_min", 5e-3, "Minimum learning rate of the optimzier")
 flags.DEFINE_float("learning_rate_max", 5e-2, "Maximum learning rate of the optimzier")
 
@@ -79,12 +79,12 @@ flags.DEFINE_boolean("default_params", True, "True to use default params")
 flags.DEFINE_boolean("ensemble", True, "True to use ensemble ngram") # ** 
 
 flags.DEFINE_boolean("embed", True, "True to use embedding table")
-flags.DEFINE_boolean("embed_trainable", False, "True to use embedding table") # **!!! Origin value is False
+flags.DEFINE_boolean("embed_trainable", False, "True to use embedding table") # ** Turn to True if nothing changes when changing the learning rate; Origin value is False
 flags.DEFINE_boolean("ethnicity", False, "True to test on ethnicity")
 flags.DEFINE_boolean("is_train", True, "True for training, False for testing")
 flags.DEFINE_boolean("is_valid", True, "True for validation, False for testing")
 flags.DEFINE_boolean("continue_train", False, "True to continue training from saved checkpoint. False for restarting.") # **
-flags.DEFINE_boolean("save", False, "True to save") # **
+flags.DEFINE_boolean("save", True, "True to save") # ** Origin is False
 flags.DEFINE_string("model_name", "default", "Model name, auto saved as YMDHMS")
 flags.DEFINE_string("checkpoint_dir", "./checkpoint/", "Directory name to save the checkpoints [checkpoint]")
 
