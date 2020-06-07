@@ -48,7 +48,7 @@ def get_ethnicity_data(data_dir, params):
         for file_cnt, file_name in enumerate(sorted(files)):
             data = open(os.path.join(root, file_name))
             file_len = 0
-            # data_length = len(open(os.path.join(root, file_name)).readlines()) # Count the number of rows (names)；if you don't set a variable here, it would be time-consuming to calculate this number for each name in a file
+            data_length = len(open(os.path.join(root, file_name)).readlines()) # Count the number of rows (names)；if you don't set a variable here, it would be time-consuming to calculate this number for each name in a file
             
             if file_name == '0_unigram_to_idx.txt':
                 for k, line in enumerate(data):
@@ -127,8 +127,8 @@ def get_ethnicity_data(data_dir, params):
                         labels.append(nationality)
                     file_len = k + 1
 
-                    # if len(length_set) >= data_length // 10: # Use to scale down the dataset; data.readlines() would empty the data...
-                    # 	break
+                    if len(length_set) >= data_length // 10: # Use to scale down the dataset; data.readlines() would empty the data...
+                        break
 
                 if 'train' in file_name: # The origin is 'train_ch'
                     train_set = [unigram_set, bigram_set, trigram_set, fourgram_set, length_set, labels]

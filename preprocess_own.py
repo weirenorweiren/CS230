@@ -32,7 +32,7 @@ write = True
 allowed_char = ['.', '\'']
 cleaning_char = [':', '©', '¶']
 
-# Go over each files in data_dir => './data/test'
+# Go over each files in data_dir => './data/own'
 for root, dir, files in os.walk(data_dir): 
 	for file_cnt, file_name in enumerate(files):  
 		file_path = data_dir + '/' + file_name
@@ -82,10 +82,10 @@ if write: # Write into new txt files as required by RNN paper
 				bigram_set.add(name[char_idx - 1] + name[char_idx])
 			if char_idx > 1:
 				trigram_set.add(name[char_idx - 2] + name[char_idx - 1] + name[char_idx])
-
-            if char_idx > 2:
-                fourgram_set.add(name[char_idx-3] + name[char_idx-2] + name[char_idx-1] + name[char_idx]) # What if a guy named Sam? 
-
+			
+			if char_idx > 2:
+				fourgram_set.add(name[char_idx - 3] + name[char_idx - 2] + name[char_idx - 1] + name[char_idx])
+		
 		if country not in train_data.values(): # dict.values() => a list of values
 			train_data[name] = country # Ensure each country appears in the training data
 		else:
@@ -102,26 +102,25 @@ if write: # Write into new txt files as required by RNN paper
 			valid_data[name] = country
 		else:
 			test_data[name] = country
-    
-    new_dataset = open(new_dataset_path + category + '_train', 'wb') # For Windows, r would change '\r\n' to '\n' and w would change '\n' to '\r\n'; solved by rb or wb; also not for Unix/Linux
-    for name, country in train_data.items():
-        line = name + '\t' + country + '\n'
-        new_dataset.write(line.encode('utf-8'))
-        # new_dataset.write(name + '\t' + country + '\n')
-    new_dataset.close()
-    new_dataset = open(new_dataset_path + category + '_valid', 'wb') # But if we write in binary form, we need to encode the input with utf-8
-    for name, country in valid_data.items():
-        line = name + '\t' + country + '\n'
-        new_dataset.write(line.encode('utf-8'))
-        # new_dataset.write(name + '\t' + country + '\n')
-    new_dataset.close()
-    new_dataset = open(new_dataset_path + category + '_test', 'wb') # No indent! Always space!
-    for name, country in test_data.items():
-        line = name + '\t' + country + '\n'
-        new_dataset.write(line.encode('utf-8'))
-        # new_dataset.write(name + '\t' + country + '\n')
-    new_dataset.close()
 
+	new_dataset = open(new_dataset_path + category + '_train', 'wb') # For Windows, r would change '\r\n' to '\n' and w would change '\n' to '\r\n'; solved by rb or wb; also not for Unix/Linux
+	for name, country in train_data.items():
+	    line = name + '\t' + country + '\n'
+	    new_dataset.write(line.encode('utf-8'))
+	    # new_dataset.write(name + '\t' + country + '\n')
+	new_dataset.close()
+	new_dataset = open(new_dataset_path + category + '_valid', 'wb') # But if we write in binary form, we need to encode the input with utf-8
+	for name, country in valid_data.items():
+	    line = name + '\t' + country + '\n'
+	    new_dataset.write(line.encode('utf-8'))
+	    # new_dataset.write(name + '\t' + country + '\n')
+	new_dataset.close()
+	new_dataset = open(new_dataset_path + category + '_test', 'wb') # No indent! Always space!
+	for name, country in test_data.items():
+	    line = name + '\t' + country + '\n'
+	    new_dataset.write(line.encode('utf-8'))
+	    # new_dataset.write(name + '\t' + country + '\n')
+	new_dataset.close()
 	# new_dataset = open(new_dataset_path + category + '_train', 'w')
 	# for name, country in train_data.items():
 	# 	new_dataset.write(name + '\t' + country + '\n')
@@ -156,12 +155,12 @@ if write: # Write into new txt files as required by RNN paper
 		trigram_dataset.write(line.encode('utf-8'))
 	trigram_dataset.close()
 
-    # write fourgram set
-    fourgram_dataset = open(fourgram_set_path, 'wb')
-    for idx, char in enumerate(sorted(fourgram_set)):
-        line = char + '\t' + str(idx) + '\n'
-        fourgram_dataset.write(line.encode('utf-8'))
-    fourgram_dataset.close()
+	# write fourgram set
+	fourgram_dataset = open(fourgram_set_path, 'wb')
+	for idx, char in enumerate(sorted(fourgram_set)):
+	    line = char + '\t' + str(idx) + '\n'
+	    fourgram_dataset.write(line.encode('utf-8'))
+	fourgram_dataset.close()
 
 	# Write country set
 	country_size = len(country_cnt)
