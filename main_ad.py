@@ -22,7 +22,7 @@ flags.DEFINE_integer("max_time_step", 50, "Maximum time step of RNN") # Origin p
 flags.DEFINE_integer("min_grad", -5, "Minimum gradient to clip")
 flags.DEFINE_integer("max_grad", 5, "Maximum gradient to clip")
 
-flags.DEFINE_integer("batch_size", 512, "Size of batch") # IMPORTANT; the bigger the better
+flags.DEFINE_integer("batch_size", 1024, "Size of batch") # IMPORTANT; the bigger the better
 
 flags.DEFINE_integer("ngram", 4, "Ngram feature when ensemble = False.")
 flags.DEFINE_float("decay_rate", 0.99, "Decay rate of learning rate")
@@ -58,7 +58,7 @@ flags.DEFINE_float("hidden_dropout", 0.5, "Dropout rate of hidden layer")
 flags.DEFINE_float("hidden_dropout_min", 0.3, "Minimum dropout rate of hidden layer")
 flags.DEFINE_float("hidden_dropout_max", 0.8, "Maximum dropout rate of hidden layer")
 
-flags.DEFINE_float("learning_rate", 0.01, "Learning rate of the optimzier") # ** IMPORTANT; Origin value is 0.01
+flags.DEFINE_float("learning_rate", 0.001, "Learning rate of the optimzier") # ** IMPORTANT; Origin value is 0.01
 flags.DEFINE_float("learning_rate_min", 5e-3, "Minimum learning rate of the optimzier")
 flags.DEFINE_float("learning_rate_max", 5e-2, "Maximum learning rate of the optimzier")
 
