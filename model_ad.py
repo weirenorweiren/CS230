@@ -39,7 +39,6 @@ class RNN(object):
         self.dim_embed_unigram = params['dim_embed_unigram']
         self.dim_embed_bigram = params['dim_embed_bigram']
         self.dim_embed_trigram = params['dim_embed_trigram']
-
         self.dim_embed_fourgram = params['dim_embed_fourgram']
 
         self.dim_hidden = params['dim_hidden']
@@ -47,10 +46,9 @@ class RNN(object):
         self.dim_unigram = params['dim_unigram'] 
         self.dim_bigram = params['dim_bigram'] 
         self.dim_trigram = params['dim_trigram'] 
-
         self.dim_fourgram = params['dim_fourgram'] 
-
         self.dim_output = params['dim_output'] # Number of countries
+        
         self.ngram = params['ngram']
         self.ensemble = params['ensemble']
         self.embed = params['embed']
@@ -62,9 +60,7 @@ class RNN(object):
         self.unigram = tf.placeholder(tf.int32, [None, self.max_time_step]) # Maximum time step of RNN; None for #examples
         self.bigram = tf.placeholder(tf.int32, [None, self.max_time_step])
         self.trigram = tf.placeholder(tf.int32, [None, self.max_time_step])
-
         self.fourgram = tf.placeholder(tf.int32, [None, self.max_time_step])
-
         self.lengths = tf.placeholder(tf.int32, [None])
         self.labels = tf.placeholder(tf.int32, [None])
         self.lstm_dropout = tf.placeholder(tf.float32)
@@ -74,9 +70,7 @@ class RNN(object):
         # self.unigram = tf.compat.v1.placeholder(tf.int32, shape = tf.TensorShape([None, self.max_time_step]))
         # self.bigram = tf.compat.v1.placeholder(tf.int32, shape = tf.TensorShape([None, self.max_time_step]))
         # self.trigram = tf.compat.v1.placeholder(tf.int32, shape = tf.TensorShape([None, self.max_time_step]))
-
         # self.fourgram = tf.compat.v1.placeholder(tf.int32, shape = tf.TensorShape([None, self.max_time_step]))
-
         # self.lengths = tf.compat.v1.placeholder(tf.int32, shape = tf.TensorShape(None))
         # self.labels = tf.compat.v1.placeholder(tf.int32, shape = tf.TensorShape(None))
         # self.lstm_dropout = tf.compat.v1.placeholder(tf.float32)
@@ -196,10 +190,8 @@ class RNN(object):
             total_logits = bigram_logits
         elif self.ngram == 3:
             total_logits = trigram_logits
-
         elif self.ngram == 4:
             total_logits = fourgram_logits
-
         else:
             assert False, 'No specific ngram %d'% ngram
 

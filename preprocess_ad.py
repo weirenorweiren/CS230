@@ -109,7 +109,7 @@ if write:
                 trigram_set.add(name[char_idx-2] + name[char_idx-1] + name[char_idx])
 
             if char_idx > 2:
-                fourgram_set.add(name[char_idx-3] + name[char_idx-2] + name[char_idx-1] + name[char_idx]) # What if a guy named Sam? 
+                fourgram_set.add(name[char_idx-3] + name[char_idx-2] + name[char_idx-1] + name[char_idx]) 
 
         if country not in train_data.values():
             train_data[name] = country

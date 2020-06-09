@@ -20,9 +20,7 @@ def get_ethnicity_data(data_dir, params):
         unigram_set = []
         bigram_set = []
         trigram_set = []
-
         fourgram_set = []
-
         length_set = []
         labels = []
 
@@ -32,7 +30,6 @@ def get_ethnicity_data(data_dir, params):
         idx2bigram = {}
         trigram2idx = {}
         idx2trigram = {}
-
         fourgram2idx = {}
         idx2fourgram = {}
 
@@ -68,14 +65,12 @@ def get_ethnicity_data(data_dir, params):
                     trigram, index = line[:-1].split('\t')
                     trigram2idx[trigram] = int(index)
                     idx2trigram[int(index)] = trigram
-
             elif file_name == '3_fourgram_to_idx.txt':
                 for k, line in enumerate(data):
                     file_len = k + 1
                     fourgram, index = line[:-1].split('\t')
                     fourgram2idx[fourgram] = int(index)
                     idx2fourgram[int(index)] = fourgram
-
             elif file_name == 'country_to_idx.txt':
                 for k, line in enumerate(data):
                     file_len = k + 1
@@ -94,12 +89,11 @@ def get_ethnicity_data(data_dir, params):
                     name, nationality = line[:-1].split('\t')
                     name = re.sub(r'\ufeff', '', name)    # delete BOM
 
-                    unigram_vector = [unigram2idx[c] if c in unigram2idx else 0 for c in name] # ??? add an int zero if a character in the name isn't in the labeling dictionary => impossible
+                    unigram_vector = [unigram2idx[c] if c in unigram2idx else 0 for c in name] # ??? Add an int zero if a character in the name isn't in the labeling dictionary => impossible
                     bigram_vector= [bigram2idx[c1 + c2] if (c1+c2) in bigram2idx else 0
                             for c1, c2 in zip(*[name[i:] for i in range(2)])]
                     trigram_vector= [trigram2idx[c1 + c2 + c3] if (c1+c2+c3) in trigram2idx else 0 
                             for c1, c2, c3 in zip(*[name[i:] for i in range(3)])]
-                    
                     fourgram_vector= [fourgram2idx[c1 + c2 + c3 + c4] if (c1+c2+c3+c4) in fourgram2idx else 0 
                             for c1, c2, c3, c4 in zip(*[name[i:] for i in range(4)])]
 
@@ -117,9 +111,7 @@ def get_ethnicity_data(data_dir, params):
                     unigram_set.append(unigram_vector)
                     bigram_set.append(bigram_vector)
                     trigram_set.append(trigram_vector)
-
                     fourgram_set.append(fourgram_vector)
-
                     length_set.append(name_length)
                     if is_ethnicity:
                         labels.append(ethnicity)
@@ -142,13 +134,11 @@ def get_ethnicity_data(data_dir, params):
                 unigram_set = [] # Initialize for a new name input
                 bigram_set = []
                 trigram_set = []
-
                 fourgram_set = []
-
                 length_set = []
                 labels = []
             else:
-                print('ignoring file', file_name)
+                print('ignoring file:', file_name)
 
             print('reading', file_name, 'of length', file_len)
 
@@ -194,18 +184,14 @@ def get_data(params):
     print(train_set[0][0]) # unigram2idx of first example
     print(train_set[1][0]) # bigram2idx of first example
     print(train_set[2][0]) # trigram2idx of first example
-
     print(train_set[3][0]) # fourgram2idx of first example
-
     print(train_set[4][0], train_set[5][0]) # name_length and nationality of first example
 
     if not is_valid: # Why to add valid_set[i] after each train_set[i]? To get rid of valid_set and ‘axis=0’ helps concatenate all elements inside horizontally 
         train_set[0] = np.append(train_set[0], valid_set[0], axis=0)
         train_set[1] = np.append(train_set[1], valid_set[1], axis=0)
         train_set[2] = np.append(train_set[2], valid_set[2], axis=0)
-
-        train_set[3] = np.append(train_set[3], valid_set[3], axis=0)
-        
+        train_set[3] = np.append(train_set[3], valid_set[3], axis=0)        
         train_set[4] = np.append(train_set[4], valid_set[4], axis=0)
         train_set[5] = np.append(train_set[5], valid_set[5], axis=0)
         print('shape of data:', np.array(train_set).shape, np.array(test_set).shape)
@@ -240,8 +226,11 @@ def experiment(model, dataset, params): #params => a dictionary from flags; data
     if continue_train is not False:
         model.load(checkpoint_dir)
 
-    start_time = time.time() # Not used! 
+    # start_time = time.time() # Not used! 
     for epoch_idx in range(train_epoch):
+        start_time = 0
+        end_time = 0
+        start_time = time.time()
         train_cost, train_acc, train_acc5 = run(model, params, dataset[0], is_train=True) # Training process
         print("\nTraining loss: %.3f, acc1: %.3f, acc5: %.3f, ep: %d" % (train_cost, train_acc,
             train_acc5, epoch_idx)) # Better to +1 for the right numebr
@@ -278,7 +267,8 @@ def experiment(model, dataset, params): #params => a dictionary from flags; data
             print("Testing loss: %.3f, acc1: %.3f, acc5: %.3f" % (test_cost, test_acc,
                 test_acc5))
             break
-
+        end_time = time.time()
+        print("Process time per epoch: %.3f seconds\n" % (end_time - start_time))
         # summary = sess.run(model.merged_summary, feed_dict=feed_dict)
         # model.train_writer.add_summary(summary, step)
 
@@ -309,16 +299,13 @@ def run(model, params, dataset, dictionary=None, is_train=False, is_valid=False,
         batch_unigram = unigram_set[datum_idx:datum_idx+batch_size]
         batch_bigram = bigram_set[datum_idx:datum_idx+batch_size]
         batch_trigram = trigram_set[datum_idx:datum_idx+batch_size]
-
         batch_fourgram = fourgram_set[datum_idx:datum_idx+batch_size]
-
         batch_lengths= lengths[datum_idx:datum_idx + batch_size]
         batch_labels = labels[datum_idx:datum_idx+batch_size]
 
         batch_unigram_onehot = []
         batch_bigram_onehot = []
         batch_trigram_onehot = []
-
         batch_fourgram_onehot = []
 
         for unigram in batch_unigram:
@@ -336,7 +323,6 @@ def run(model, params, dataset, dictionary=None, is_train=False, is_valid=False,
             while len(trigram_onehot) != max_time_step:
                 trigram_onehot.append(0)
             batch_trigram_onehot.append(trigram_onehot)
-
         for fourgram in batch_fourgram:
             fourgram_onehot = fourgram
             while len(fourgram_onehot) != max_time_step:

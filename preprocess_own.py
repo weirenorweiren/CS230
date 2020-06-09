@@ -12,9 +12,7 @@ data_dir = './data/' + source
 unigram_set_path = './data/' + category + '/0_unigram_to_idx.txt'
 bigram_set_path = './data/' + category + '/1_bigram_to_idx.txt'
 trigram_set_path = './data/' + category + '/2_trigram_to_idx.txt'
-
 fourgram_set_path = './data/' + category + '/3_fourgram_to_idx.txt'
-
 country_set_path = './data/' + category + '/country_to_idx.txt'
 new_dataset_path = './data/' + category + '/data_'
 
@@ -22,9 +20,7 @@ name_to_country = {} # Dictionary with names as keys and countries as values
 unigram_set = set()
 bigram_set = set()
 trigram_set = set()
-
 fourgram_set = set()
-
 country_cnt = {}
 
 clean = False # True for once then no need to clean again; actually since we don't want add '$', it can be set to False
@@ -81,8 +77,7 @@ if write: # Write into new txt files as required by RNN paper
 			if char_idx > 0:
 				bigram_set.add(name[char_idx - 1] + name[char_idx])
 			if char_idx > 1:
-				trigram_set.add(name[char_idx - 2] + name[char_idx - 1] + name[char_idx])
-			
+				trigram_set.add(name[char_idx - 2] + name[char_idx - 1] + name[char_idx])			
 			if char_idx > 2:
 				fourgram_set.add(name[char_idx - 3] + name[char_idx - 2] + name[char_idx - 1] + name[char_idx])
 		
@@ -107,20 +102,20 @@ if write: # Write into new txt files as required by RNN paper
 	for name, country in train_data.items():
 	    line = name + '\t' + country + '\n'
 	    new_dataset.write(line.encode('utf-8'))
-	    # new_dataset.write(name + '\t' + country + '\n')
 	new_dataset.close()
+
 	new_dataset = open(new_dataset_path + category + '_valid', 'wb') # But if we write in binary form, we need to encode the input with utf-8
 	for name, country in valid_data.items():
 	    line = name + '\t' + country + '\n'
 	    new_dataset.write(line.encode('utf-8'))
-	    # new_dataset.write(name + '\t' + country + '\n')
 	new_dataset.close()
+
 	new_dataset = open(new_dataset_path + category + '_test', 'wb') # No indent! Always space!
 	for name, country in test_data.items():
 	    line = name + '\t' + country + '\n'
 	    new_dataset.write(line.encode('utf-8'))
-	    # new_dataset.write(name + '\t' + country + '\n')
 	new_dataset.close()
+	
 	# new_dataset = open(new_dataset_path + category + '_train', 'w')
 	# for name, country in train_data.items():
 	# 	new_dataset.write(name + '\t' + country + '\n')
@@ -155,7 +150,7 @@ if write: # Write into new txt files as required by RNN paper
 		trigram_dataset.write(line.encode('utf-8'))
 	trigram_dataset.close()
 
-	# write fourgram set
+	# Write fourgram set
 	fourgram_dataset = open(fourgram_set_path, 'wb')
 	for idx, char in enumerate(sorted(fourgram_set)):
 	    line = char + '\t' + str(idx) + '\n'
@@ -181,7 +176,5 @@ print('sample data', name_to_country[532], name_to_country[15])
 print('unigram set', len(unigram_set))
 print('bigram set', len(bigram_set))
 print('trigram set', len(trigram_set))
-
 print('fourgram set', len(fourgram_set))
-
 print('country set', country_size) 

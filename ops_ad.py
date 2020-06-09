@@ -21,7 +21,7 @@ def lstm_cell(cell_dim, layer_num, dropout_rate):
     with tf.variable_scope('LSTM_Cell') as scope: # A context manager for defining ops that creates variables (layers)
     # https://morvanzhou.github.io/tutorials/machine-learning/tensorflow/5-12-scope/
         cell = tf.contrib.rnn.BasicLSTMCell(cell_dim, forget_bias=1.0, activation=tf.tanh, state_is_tuple=True) # #Units of LSTM cell 
-        cell = AttentionCellWrapper(cell, attn_length = 10, state_is_tuple=True) # ** Origin is 10; 5 is worse
+        cell = AttentionCellWrapper(cell, attn_length = 5, state_is_tuple=True) # ** Origin is 10
         cell = tf.contrib.rnn.DropoutWrapper(cell, output_keep_prob = 1 - dropout_rate)
         return tf.contrib.rnn.MultiRNNCell([cell] * layer_num, state_is_tuple=True)
 
@@ -80,7 +80,7 @@ def rnn_model(inputs, input_len, cell, params):
     dim_rnn_cell = params['dim_rnn_cell']
     with tf.variable_scope('RNN') as scope:
         outputs, state = tf.contrib.rnn.static_rnn(cell, inputs, sequence_length=input_len, dtype=tf.float32, scope=scope)
-        # inputs from rnn_shape; input_len => embedding lengths
+        # inputs from rnn_shape; input_len => name lengths after embedding
         outputs = tf.transpose(tf.stack(outputs), [1, 0, 2]) 
         # outputs before is a list of rank2 tensors and an extra dimension is added ((N,a,b)) to be a rank3 tensor; 
         # Then transpose the dimensions as [batch_size, max_time_step, input_dim] in rnn_shape

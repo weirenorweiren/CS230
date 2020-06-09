@@ -16,55 +16,44 @@ flags.DEFINE_integer("train_epoch", 3000, "Epoch to train")
 flags.DEFINE_integer("dim_unigram", 71, "Dimension of input, 71 or 82") # Own data or RNN data
 flags.DEFINE_integer("dim_bigram", 1055, "Dimension of input, 1055 or 1876")
 flags.DEFINE_integer("dim_trigram", 11327, "Dimension of input, 11327 or 14767") 
-
 flags.DEFINE_integer("dim_fourgram", 80874, "Dimension of input, 80874 or 50596")
-
 flags.DEFINE_integer("dim_output", 18, "Dimension of output, 18 or 127") # Number of nationalities
 flags.DEFINE_integer("max_time_step", 50, "Maximum time step of RNN") # Origin paper value is 60, now change to paper optimal
 flags.DEFINE_integer("min_grad", -5, "Minimum gradient to clip")
 flags.DEFINE_integer("max_grad", 5, "Maximum gradient to clip")
+
 flags.DEFINE_integer("batch_size", 512, "Size of batch") # IMPORTANT; the bigger the better
 
 flags.DEFINE_integer("ngram", 4, "Ngram feature when ensemble = False.")
-
 flags.DEFINE_float("decay_rate", 0.99, "Decay rate of learning rate")
 flags.DEFINE_float("decay_step", 100, "Decay step of learning rate")
 
 # Validation hyper parameters
 flags.DEFINE_integer("valid_iteration", 250, "Number of validation iteration.")
-
 flags.DEFINE_integer("dim_rnn_cell", 200, "Dimension of RNN cell") # ** (200, 1) or (200, 1 * dim_embed_gram)
 flags.DEFINE_integer("dim_rnn_cell_min", 200, "Minimum dimension of RNN cell")
 flags.DEFINE_integer("dim_rnn_cell_max", 399, "Maximum dimension of RNN cell")
-
 flags.DEFINE_integer("dim_hidden", 200, "Dimension of hidden layer") # ** (200, 1)
 flags.DEFINE_integer("dim_hidden_min", 200, "Minimum dimension of hidden layer")
 flags.DEFINE_integer("dim_hidden_max", 399, "Maximum dimension of hidden layer")
-
 flags.DEFINE_integer("dim_embed_unigram", 30, "Dimension of character embedding") # What's the difference between dim_unigram and dim__embed_unigram? 
 flags.DEFINE_integer("dim_embed_unigram_min", 10, "Minimum dimension of character embedding") # The former is unigram2indx as reference dictionary
 flags.DEFINE_integer("dim_embed_unigram_max", 100, "Maximum dimension of character embedding")
-
 flags.DEFINE_integer("dim_embed_bigram", 100, "Dimension of character embedding")
 flags.DEFINE_integer("dim_embed_bigram_min", 30, "Minimum dimension of character embedding")
 flags.DEFINE_integer("dim_embed_bigram_max", 200, "Maximum dimension of character embedding")
-
 flags.DEFINE_integer("dim_embed_trigram", 130, "Dimension of character embedding")
 flags.DEFINE_integer("dim_embed_trigram_min", 30, "Minimum dimension of character embedding")
 flags.DEFINE_integer("dim_embed_trigram_max", 320, "Maximum dimension of character embedding")
-
 flags.DEFINE_integer("dim_embed_fourgram", 200, "Dimension of character embedding") # ** 125 is better for RNN data than 200/150/100
 flags.DEFINE_integer("dim_embed_fourgram_min", 30, "Minimum dimension of character embedding")
 flags.DEFINE_integer("dim_embed_fourgram_max", 320, "Maximum dimension of character embedding")
-
 flags.DEFINE_integer("lstm_layer", 1, "Layer number of RNN ")
 flags.DEFINE_integer("lstm_layer_min", 1, "Mimimum layer number of RNN ")
 flags.DEFINE_integer("lstm_layer_max", 1, "Maximum layer number of RNN ")
-
 flags.DEFINE_float("lstm_dropout", 0.5, "Dropout of RNN cell")
 flags.DEFINE_float("lstm_dropout_min", 0.3, "Minumum dropout of RNN cell")
 flags.DEFINE_float("lstm_dropout_max", 0.8, "Maximum dropout of RNN cell")
-
 flags.DEFINE_float("hidden_dropout", 0.5, "Dropout rate of hidden layer")
 flags.DEFINE_float("hidden_dropout_min", 0.3, "Minimum dropout rate of hidden layer")
 flags.DEFINE_float("hidden_dropout_max", 0.8, "Maximum dropout rate of hidden layer")
@@ -75,21 +64,21 @@ flags.DEFINE_float("learning_rate_max", 5e-2, "Maximum learning rate of the opti
 
 # Model settings
 flags.DEFINE_boolean("default_params", True, "True to use default params")
-
 flags.DEFINE_boolean("ensemble", True, "True to use ensemble ngram") # ** 
-
 flags.DEFINE_boolean("embed", True, "True to use embedding table")
+
 flags.DEFINE_boolean("embed_trainable", False, "True to use embedding table") # ** Turn to True if nothing changes when changing the learning rate; Origin value is False
+
 flags.DEFINE_boolean("ethnicity", False, "True to test on ethnicity")
 flags.DEFINE_boolean("is_train", True, "True for training, False for testing")
+
 flags.DEFINE_boolean("is_valid", True, "True for validation, False for testing")
 flags.DEFINE_boolean("continue_train", False, "True to continue training from saved checkpoint. False for restarting.") # **
 flags.DEFINE_boolean("save", True, "True to save") # ** Origin is False
+
 flags.DEFINE_string("model_name", "default", "Model name, auto saved as YMDHMS")
 flags.DEFINE_string("checkpoint_dir", "./checkpoint/", "Directory name to save the checkpoints [checkpoint]")
-
 flags.DEFINE_string("data_dir", "data/own", "Directory name of input data") # **!!!
-
 flags.DEFINE_string("valid_result_path", "result/validation.txt", "Validation result save path")
 flags.DEFINE_string("pred_result_path", "result/pred.txt", "Prediction result save path")
 flags.DEFINE_string("detail_result_path", "result/detail.txt", "Prediction result save path")
@@ -108,7 +97,6 @@ def sample_parameters(params):
             params['dim_embed_unigram'],
             params['dim_embed_bigram'],
             params['dim_embed_trigram'],
-
             params['dim_embed_fourgram']
     ]
 
@@ -158,11 +146,9 @@ def main(_):
     elif saved_params['ngram'] == 2:
         model_name = 'bigram'
     elif saved_params['ngram'] == 3:
-        model_name = 'trigram'
-    
+        model_name = 'trigram'    
     elif saved_params['ngram'] == 4:
         model_name = 'fourgram'
-
     else:
         assert False, 'Not supported ngram %d'% saved_params['ngram'] # ** Origin value is True
     model_name += '_embedding' if saved_params['embed'] else '_no_embedding' 
@@ -185,8 +171,7 @@ def main(_):
         # Initialize embeddings
         uni_init = get_char2vec(dataset[0][0][:], params['dim_embed_unigram'], dataset[3][0]) # Return initializer
         bi_init = get_char2vec(dataset[0][1][:], params['dim_embed_bigram'], dataset[3][4]) # The first [] is the outermost dimension == train_set or dictionary; [3][i] gives the outermost dimension in dictionary
-        tri_init = get_char2vec(dataset[0][2][:], params['dim_embed_trigram'], dataset[3][5]) # Easy to understand with get_data()
- 
+        tri_init = get_char2vec(dataset[0][2][:], params['dim_embed_trigram'], dataset[3][5]) # Easy to understand with get_data() 
         four_init = get_char2vec(dataset[0][3][:], params['dim_embed_fourgram'], dataset[3][6])
         
         print(model_name, 'Parameter sets: ', end='')
