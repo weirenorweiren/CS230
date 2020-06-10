@@ -58,7 +58,7 @@ flags.DEFINE_float("hidden_dropout", 0.5, "Dropout rate of hidden layer")
 flags.DEFINE_float("hidden_dropout_min", 0.3, "Minimum dropout rate of hidden layer")
 flags.DEFINE_float("hidden_dropout_max", 0.8, "Maximum dropout rate of hidden layer")
 
-flags.DEFINE_float("learning_rate", 0.001, "Learning rate of the optimzier") # ** IMPORTANT; Origin value is 0.01
+flags.DEFINE_float("learning_rate", 0.002, "Learning rate of the optimzier") # ** IMPORTANT; Origin value is 0.01
 flags.DEFINE_float("learning_rate_min", 5e-3, "Minimum learning rate of the optimzier")
 flags.DEFINE_float("learning_rate_max", 5e-2, "Maximum learning rate of the optimzier")
 
