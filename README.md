@@ -5,9 +5,9 @@ LSTM + Character Level Embedding + Attention Mechanism
 This is the project for Stanford CS230 at spring quarter of 2020. The project is developed based on Jinhyuk Lee et al's work of [Name Nationaltiy Classification with Recurrent Neural Networks]. Our model adds an additional quadgram embedding and the attention mechanism on LSTM to extract more features in order to improve the performance. The dataset is from https://github.com/d4em0n/nationality-classify which contains (name,nationality) pairs from 18 countries. Due to sudden time-cutting for the project, we don't have enough time to fine-tune the model. But the good news is that the two figures below give an encouraging experiment results. We can see that for an attention length of 5 and a batch size of 1024, the learning rate within 0.001 and 0.003 shows very exciting and promising accuracy for test set. 
 
 <p float="left">
-<img src="https://github.com/weirenorweiren/CS230/blob/master/Own%20dataset/Tuning/attn_length%3D5/accu1.jpg" alt="alt text" width="450">
+<img src="https://github.com/weirenorweiren/CS230/blob/master/Own%20dataset/Tuning/attn_length%3D5/accu1.jpg" alt="alt text" width="425">
 
-<img src="https://github.com/weirenorweiren/CS230/blob/master/Own%20dataset/Tuning/attn_length%3D5/accu5.jpg" alt="alt text" width="450">
+<img src="https://github.com/weirenorweiren/CS230/blob/master/Own%20dataset/Tuning/attn_length%3D5/accu5.jpg" alt="alt text" width="425">
 </p>
 
 ## Requirements
