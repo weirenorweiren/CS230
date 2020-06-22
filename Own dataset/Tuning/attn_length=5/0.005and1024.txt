@@ -1,0 +1,82 @@
+ensemble_embedding Parameter sets: [200, 200, 0.005, 0.5, 1, 0.5, 30, 100, 130, 200]
+## Building an RNN model
+Tensor("Unigram/Unigram/embedding_lookup:0", shape=(?, 50, 30), dtype=float32)
+Tensor("Bigram/Bigram/embedding_lookup:0", shape=(?, 50, 100), dtype=float32)
+Tensor("Trigram/Trigram/embedding_lookup:0", shape=(?, 50, 130), dtype=float32)
+Tensor("Fourgram/Fourgram/embedding_lookup:0", shape=(?, 50, 200), dtype=float32)
+/usr/local/lib/python3.6/dist-packages/tensorflow/python/ops/gradients_impl.py:91: UserWarning: Converting sparse IndexedSlices to a dense Tensor of unknown shape. This may consume a large amount of memory.
+  "Converting sparse IndexedSlices to a dense Tensor of unknown shape. "
+model variables ['Unigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/weights:0', 'Unigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/biases:0', 'Unigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/basic_lstm_cell/weights:0', 'Unigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/basic_lstm_cell/biases:0', 'Unigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/attn_w:0', 'Unigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/attn_v:0', 'Unigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/weights:0', 'Unigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/biases:0', 'Unigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attn_output_projection/weights:0', 'Unigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attn_output_projection/biases:0', 'Bigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/weights:0', 'Bigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/biases:0', 'Bigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/basic_lstm_cell/weights:0', 'Bigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/basic_lstm_cell/biases:0', 'Bigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/attn_w:0', 'Bigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/attn_v:0', 'Bigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/weights:0', 'Bigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/biases:0', 'Bigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attn_output_projection/weights:0', 'Bigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attn_output_projection/biases:0', 'Trigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/weights:0', 'Trigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/biases:0', 'Trigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/basic_lstm_cell/weights:0', 'Trigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/basic_lstm_cell/biases:0', 'Trigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/attn_w:0', 'Trigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/attn_v:0', 'Trigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/weights:0', 'Trigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/biases:0', 'Trigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attn_output_projection/weights:0', 'Trigram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attn_output_projection/biases:0', 'Fourgram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/weights:0', 'Fourgram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/biases:0', 'Fourgram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/basic_lstm_cell/weights:0', 'Fourgram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/basic_lstm_cell/biases:0', 'Fourgram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/attn_w:0', 'Fourgram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/attn_v:0', 'Fourgram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/weights:0', 'Fourgram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attention/biases:0', 'Fourgram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attn_output_projection/weights:0', 'Fourgram/RNN/multi_rnn_cell/cell_0/attention_cell_wrapper/attn_output_projection/biases:0', 'Hidden1/Weights:0', 'Hidden1/Biases:0', 'Output/Weights:0', 'Output/Biases:0']
+## Training
+Percent: [####################] 100.00% Finished. tr loss: 21.192, acc1: 0.221, acc5: 0.642
+Training loss: 45.176, acc1: 0.184, acc5: 0.522, ep: 0
+
+Validation loss: 3.225, acc1: 0.410, acc5: 0.756, ep: 0
+Testing loss: 3.137, acc1: 0.416, acc5: 0.744
+
+Model saved ensemble_embedding.model
+Process time per epoch: 1177.466 seconds
+
+Percent: [####################] 100.00% Finished. tr loss: 7.017, acc1: 0.267, acc5: 0.537
+Training loss: 11.862, acc1: 0.250, acc5: 0.568, ep: 1
+
+Validation loss: 2.430, acc1: 0.235, acc5: 0.518, ep: 1
+Testing loss: 2.423, acc1: 0.237, acc5: 0.526
+
+Model saved ensemble_embedding.model
+Process time per epoch: 1155.258 seconds
+
+Percent: [####################] 100.00% Finished. tr loss: 4.063, acc1: 0.167, acc5: 0.496
+Training loss: 5.382, acc1: 0.188, acc5: 0.497, ep: 2
+
+Validation loss: 2.625, acc1: 0.201, acc5: 0.444, ep: 2
+Testing loss: 2.640, acc1: 0.212, acc5: 0.446
+
+Model saved ensemble_embedding.model
+Process time per epoch: 1140.124 seconds
+
+Percent: [####################] 100.00% Finished. tr loss: 3.056, acc1: 0.229, acc5: 0.492
+Training loss: 3.457, acc1: 0.217, acc5: 0.501, ep: 3
+
+Validation loss: 2.572, acc1: 0.225, acc5: 0.477, ep: 3
+Testing loss: 2.564, acc1: 0.253, acc5: 0.492
+
+Model saved ensemble_embedding.model
+Process time per epoch: 1133.616 seconds
+
+Percent: [####################] 100.00% Finished. tr loss: 2.680, acc1: 0.254, acc5: 0.529
+Training loss: 2.843, acc1: 0.243, acc5: 0.541, ep: 4
+
+Validation loss: 2.394, acc1: 0.287, acc5: 0.545, ep: 4
+Testing loss: 2.411, acc1: 0.296, acc5: 0.544
+
+Model saved ensemble_embedding.model
+Process time per epoch: 1156.730 seconds
+
+Percent: [####################] 100.00% Finished. tr loss: 2.604, acc1: 0.321, acc5: 0.583
+Training loss: 2.570, acc1: 0.304, acc5: 0.600, ep: 5
+
+Validation loss: 2.186, acc1: 0.377, acc5: 0.618, ep: 5
+Testing loss: 2.209, acc1: 0.370, acc5: 0.609
+
+Model saved ensemble_embedding.model
+Early stopping applied
+
+Testing loss: 2.209, acc1: 0.370, acc5: 0.609
+---------------------------------------------------------------------------
+TypeError                                 Traceback (most recent call last)
+<ipython-input-5-2abaab2b9908> in <module>()
+     15 
+     16     rnn_model = RNN(params, [uni_init, bi_init, tri_init, four_init])
+---> 17     top1, top5, ep = experiment(rnn_model, dataset, params) # With train_iterations; return max_top1, max_top5, max_top1_epoch
+     18 
+     19     validation_writer.write(str(combination) + '\t')
+
+/content/CS230/dataset_ad.py in experiment(model, dataset, params)
+    274 
+    275     # model.save(checkpoint_dir, sess.run(model.global_step))
+--> 276     model.reset_graph()
+    277     return max_top1, max_top5, max_top1_epoch
+    278 
+
+TypeError: reset_graph() takes 0 positional arguments but 1 was given
